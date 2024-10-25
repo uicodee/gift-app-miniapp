@@ -8,6 +8,7 @@ interface LeaderCardProps {
   fullName: string;
   gifts: number;
   place: number;
+  me?: boolean;
 }
 
 export const LeaderCard = ({
@@ -15,15 +16,27 @@ export const LeaderCard = ({
   fullName,
   gifts,
   place,
+  me = false,
 }: LeaderCardProps) => {
   return (
-    <div className="flex items-center pt-2 w-full gap-x-3">
+    <div
+      className={`bg-white flex items-center pt-2 w-full gap-x-3 ${
+        me && "sticky bottom-[92px] z-10 border-t-0.5 border-t-separator"
+      }`}
+    >
       <div className="size-10">
         <img src={avatar} alt="Avatar" className="object-cover" />
       </div>
       <div className="flex justify-between items-center w-full border-b-0.5 border-separator pb-2">
         <div>
-          <span className="text-base-plus leading-5.5">{fullName}</span>
+          <div className="flex items-center gap-x-1.5">
+            <span className="text-base-plus leading-5.5 ">{fullName}</span>
+            {me && (
+              <span className="text-pre-xxs bg-label-secondary-20 text-label-secondary rounded leading-3.5 px-1">
+                You
+              </span>
+            )}
+          </div>
           <div className="flex items-center gap-x-1.5">
             <Gift className="size-3" />
             <span className="text-pre-xs leading-4 text-primary">

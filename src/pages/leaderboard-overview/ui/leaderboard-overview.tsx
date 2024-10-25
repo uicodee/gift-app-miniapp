@@ -47,6 +47,20 @@ export const LeaderboardOverview = () => {
           place={11}
         />
         <LeaderCard avatar={Avatar4} fullName="Bob" gifts={756} place={12} />
+        <LeaderCard avatar={Avatar} fullName="Alicia" gifts={1000} place={13} />
+        <LeaderCard
+          avatar={Avatar2}
+          fullName="John Doe"
+          gifts={950}
+          place={14}
+          me
+        />
+        <LeaderCard
+          avatar={Avatar3}
+          fullName="Roberto"
+          gifts={802}
+          place={15}
+        />
       </div>
     </div>
   );

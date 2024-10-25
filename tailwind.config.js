@@ -128,13 +128,15 @@ export default {
       },
       fontSize: {
         xxs: "10px",
+        "pre-xxs": "11px",
         "pre-sm": "15px",
         "pre-xs": "13px",
         "base-plus": "17px",
       },
       lineHeight: {
-        5.5: "22px",
+        3.5: "14px",
         4.5: "18px",
+        5.5: "22px",
       },
       size: {
         5.5: "22px",
@@ -153,7 +155,7 @@ export default {
         pattern: "url('../assets/pattern-light.svg')",
       },
       borderWidth: {
-        0.5: "0.5px",
+        0.5: "0.33px",
       },
     },
   },
