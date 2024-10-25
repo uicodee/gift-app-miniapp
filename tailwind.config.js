@@ -128,12 +128,16 @@ export default {
       },
       fontSize: {
         xxs: "10px",
+        "pre-sm": "15px",
         "pre-xs": "13px",
         "base-plus": "17px",
       },
       lineHeight: {
         5.5: "22px",
         4.5: "18px",
+      },
+      size: {
+        5.5: "22px",
       },
       backdropBlur: {
         half: "50px",
@@ -147,6 +151,9 @@ export default {
       },
       backgroundImage: {
         pattern: "url('../assets/pattern-light.svg')",
+      },
+      borderWidth: {
+        0.5: "0.5px",
       },
     },
   },
