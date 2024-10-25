@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --red: #ff4747;
+  --primary: #007aff;
+  --accent-blue: #007aff;
+  --accent-cyan: #5ac8fa;
+  --accent-gold: #f1aa05;
+  --accent-purple: #af51de;
+  --accent-green: #35c759;
+  --separator: rgba(60, 60, 67, 0.36);
+  --tabbar-icons: #959595;
+  --label-secondary: #8e8e93;
+  --label-tabbar: rgba(84, 84, 88, 0.65);
+  --label-date: #6d6d71;
+  --bg-secondary: #efeff3;
+  --bg-notification: rgba(45, 45, 45, 0.8);
+  --bg-tabbar: rgba(241, 241, 242, 0.75);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--white);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+#root {
+  height: 100%;
+  overflow-y: scroll;
+}
