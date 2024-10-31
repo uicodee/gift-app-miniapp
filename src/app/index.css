@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --white: #ffffff;
+  --bg-primary: var(--white);
+  --text-primary: var(--black);
   --black: #000000;
   --red: #ff4747;
   --primary: #007aff;
@@ -11,6 +13,7 @@
   --accent-cyan: #5ac8fa;
   --accent-gold: #f1aa05;
   --accent-purple: #af51de;
+  --dark-green: #46d10033;
   --accent-green: #35c759;
   --separator: rgba(60, 60, 67, 0.36);
   --tabbar-icons: #959595;
@@ -20,6 +23,229 @@
   --bg-secondary: #efeff3;
   --bg-notification: rgba(45, 45, 45, 0.8);
   --bg-tabbar: rgba(241, 241, 242, 0.75);
+
+  .dark {
+    --white: #ffffff;
+    --bg-primary: #1c1c1e;
+    --text-primary: var(--white);
+    --black: #000000;
+    --red: #ff4747;
+    --primary: #007aff;
+    --accent-blue: #007aff;
+    --accent-cyan: #5ac8fa;
+    --accent-gold: #f1aa05;
+    --accent-purple: #af51de;
+    --dark-green: #46d10033;
+    --accent-green: #35c759;
+    --separator: rgba(60, 60, 67, 0.36);
+    --tabbar-icons: #959595;
+    --label-secondary: #8e8e93;
+    --label-tabbar: rgba(84, 84, 88, 0.65);
+    --label-date: #6d6d71;
+    --bg-secondary: #2c2c2c;
+    --bg-notification: rgba(45, 45, 45, 0.8);
+    --bg-tabbar: rgba(30, 30, 30, 0.75);
+  }
+} */
+
+/* :root {
+  --color-white: rgb(255, 255, 255);
+  --color-black: rgb(0, 0, 0);
+
+  --color-primary: rgb(0, 122, 255);
+
+  --color-accent-blue: rgb(0, 122, 255);
+  --color-accent-blue-5: rgba(0, 122, 255, 0.05);
+  --color-accent-blue-20: rgba(0, 122, 255, 0.2);
+
+  --color-accent-cyan: rgb(90, 200, 250);
+  --color-accent-gold: rgb(241, 170, 5);
+  --color-accent-gold-10: rgba(241, 170, 5, 0.1);
+  --color-accent-gold-20: rgba(241, 170, 5, 0.2);
+
+  --color-accent-purple: rgb(175, 81, 222);
+  --color-accent-green: rgb(53, 199, 89);
+
+  --color-separator: rgba(60, 60, 67, 0.36);
+
+  --color-icon-tabbar: rgb(149, 149, 149);
+  --color-text-secondary: rgb(142, 142, 147);
+  --color-text-tabbar: rgba(84, 84, 88, 0.65);
+  --color-text-date: rgb(109, 109, 113);
+
+  --color-bg-secondary: rgb(239, 239, 243);
+  --color-bg-notification: rgba(45, 45, 45, 0.8);
+  --color-bg-tabbar: rgba(241, 241, 242, 0.75);
+
+  --color-card-bg-success: rgba(70, 209, 0, 0.2);
+  --color-card-bg-success-20: rgba(70, 209, 0, 0.2);
+  --color-card-bg-success-06: rgba(70, 209, 0, 0.06);
+
+  --color-card-bg-warning: rgba(255, 71, 71, 0.2);
+  --color-card-bg-warning-20: rgba(255, 71, 71, 0.2);
+  --color-card-bg-warning-5: rgba(255, 71, 71, 0.05);
+}
+
+.dark {
+  --color-white: rgb(255, 255, 255);
+  --color-black: rgb(0, 0, 0);
+
+  --color-primary: rgb(0, 122, 255);
+
+  --color-accent-blue: rgb(0, 122, 255);
+  --color-accent-blue-5: rgba(0, 122, 255, 0.05);
+  --color-accent-blue-20: rgba(0, 122, 255, 0.2);
+
+  --color-accent-cyan: rgb(90, 200, 250);
+  --color-accent-gold: rgb(241, 170, 5);
+  --color-accent-gold-10: rgba(241, 170, 5, 0.1);
+  --color-accent-gold-20: rgba(241, 170, 5, 0.2);
+
+  --color-accent-purple: rgb(175, 81, 222);
+  --color-accent-green: rgb(53, 199, 89);
+
+  --color-separator: rgba(60, 60, 67, 0.36);
+
+  --color-icon-tabbar: rgb(149, 149, 149);
+  --color-text-secondary: rgb(142, 142, 147);
+  --color-text-tabbar: rgba(84, 84, 88, 0.65);
+  --color-text-date: rgb(109, 109, 113);
+
+  --color-bg-secondary: rgb(44, 44, 44);
+  --color-bg-notification: rgba(45, 45, 45, 0.8);
+  --color-bg-tabbar: rgba(30, 30, 30, 0.75);
+
+  --color-card-bg-success: rgba(70, 209, 0, 0.2);
+  --color-card-bg-success-20: rgba(70, 209, 0, 0.2);
+  --color-card-bg-success-06: rgba(70, 209, 0, 0.06);
+
+  --color-card-bg-warning: rgba(255, 71, 71, 0.2);
+  --color-card-bg-warning-20: rgba(255, 71, 71, 0.2);
+  --color-card-bg-warning-5: rgba(255, 71, 71, 0.05);
+} */
+
+/* :root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-primary: #007aff;
+  --color-accent-blue: #007aff;
+  --color-accent-cyan: #5ac8fa;
+  --color-accent-gold: #f1aa05;
+  --color-accent-purple: #af51de;
+  --color-accent-green: #35c759;
+
+  --color-separator: rgba(60, 60, 67, 0.36);
+
+  --color-icon-tabbar: #959595;
+  --color-text-secondary: #8e8e93;
+  --color-text-tabbar: rgba(84, 84, 88, 0.65);
+  --color-text-date: #6d6d71;
+
+  --color-bg-secondary: #efeff3;
+  --color-bg-notification: rgba(45, 45, 45, 0.8);
+  --color-bg-tabbar: rgba(241, 241, 242, 0.75);
+
+  --color-card-bg-success: #46d10033;
+  --color-card-bg-warning: #ff474733;
+}
+
+.dark {
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-primary: #007aff;
+  --color-accent-blue: #007aff;
+  --color-accent-cyan: #5ac8fa;
+  --color-accent-gold: #f1aa05;
+  --color-accent-purple: #af51de;
+  --color-accent-green: #35c759;
+
+  --color-separator: rgba(60, 60, 67, 0.36);
+
+  --color-icon-tabbar: #959595;
+  --color-text-secondary: #8e8e93;
+  --color-text-tabbar: rgba(84, 84, 88, 0.65);
+  --color-text-date: #6d6d71;
+
+  --color-bg-secondary: #2c2c2c;
+  --color-bg-notification: rgba(45, 45, 45, 0.8);
+  --color-bg-tabbar: rgba(30, 30, 30, 0.75);
+
+  --color-card-bg-success: #46d10033;
+  --color-card-bg-warning: #ff474733;
+} */
+
+:root {
+  /* Base colors */
+
+  --color-white: rgb(255, 255, 255);
+
+  --color-black: rgb(0, 0, 0);
+
+  --color-primary: rgb(0, 122, 255);
+
+  --color-accent-blue: rgb(0, 122, 255);
+  --color-accent-blue-12: rgba(0, 122, 255, 0.12);
+  --color-accent-blue-5: rgb(0, 122, 255, 0.05);
+  --color-accent-blue-20: rgb(0, 122, 255, 0.2);
+
+  --color-accent-cyan: rgb(90, 200, 250);
+
+  --color-accent-gold: rgb(241, 170, 5);
+  --color-accent-gold-10: rgba(254, 159, 65, 0.1);
+  --color-accent-gold-20: rgba(254, 159, 65, 0.2);
+
+  --color-accent-purple: rgb(175, 81, 222);
+
+  --color-accent-green: rgb(53, 199, 89);
+
+  --color-green: rgba(70, 209, 0, 0.2);
+  --color-green-20: rgba(70, 209, 0, 0.2);
+  --color-green-06: rgba(70, 209, 0, 0.06);
+
+  --color-red: rgba(255, 71, 71, 0.2);
+  --color-red-20: rgba(255, 71, 71, 0.2);
+  --color-red-5: rgba(255, 71, 71, 0.05);
+
+  --color-separator: rgba(60, 60, 67, 0.36);
+
+  --color-secondary: rgba(239, 239, 243, 1);
+
+  --color-tabbar-label: rgba(84, 84, 88, 0.65);
+
+  --color-tabbar-icons: rgba(149, 149, 149, 1);
+
+  --color-bg-tabbar: rgba(241, 241, 242, 0.75);
+
+  --color-label-secondary: rgba(142, 142, 147, 1);
+  --color-label-secondary-10: rgba(142, 142, 147, 0.1);
+  --color-label-secondary-20: rgba(142, 142, 147, 0.2);
+
+  /* Theme colors */
+
+  --bg-color: var(--color-white);
+  --secondary-bg-color: var(--color-secondary);
+  --accent-text-color: var(--color-black);
+  --secondary-text-color: var(--color-label-secondary);
+  --section-bg-color: var(--secondary-bg-color);
+  --input: var(--secondary-bg-color);
+  --placeholder: rgba(60, 60, 67, 0.6);
+}
+
+.dark {
+  --color-separator: rgba(60, 60, 67, 0.36);
+
+  /* Theme colors */
+
+  --bg-color: rgba(28, 28, 30, 1);
+  --secondary-bg-color: var(--color-black);
+  --accent-text-color: var(--color-white);
+  --color-bg-tabbar: rgba(30, 30, 30, 0.75);
+  --color-tabbar-label: var(--color-label-secondary);
+  --section-bg-color: rgba(44, 44, 46, 1);
+  --input: rgba(0, 0, 0, 0.5);
+  --placeholder: var(--color-label-secondary);
 }
 
 body {
@@ -27,12 +253,13 @@ body {
   padding: 0;
   height: 100dvh;
   overflow: hidden;
-  background: var(--white);
+  background: var(--secondary-bg-color);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 #root {
-  height: 100%;
+  /* height: 100%; */
+  /* min-height: 100%; */
   overflow-y: scroll;
 }

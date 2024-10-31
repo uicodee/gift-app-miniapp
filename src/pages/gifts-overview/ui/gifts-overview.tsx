@@ -1,33 +1,49 @@
-import { Heading, MiniGiftCard } from "@/shared/ui";
-import { Paragraph } from "@/shared/ui/paragraph";
-import GiftImage from "@/assets/gift-image.png";
-import GreenStar from "@/assets/green-star.png";
-import BlueStar from "@/assets/blue-star.png";
-import RedStar from "@/assets/red-star.png";
+import { Typography, MiniGiftCard, Section } from "@/shared/ui";
+import { useQuery } from "@tanstack/react-query";
+import { getUsers } from "@/shared/api/generated/users/users";
+import { initDataRaw } from "@telegram-apps/sdk-react";
+import Image from "@/assets/image.png";
+
+const GiftsEmpty = () => {
+  return (
+    <Section className="flex flex-col justify-center items-center text-center bg-section rounded-xl py-8 gap-y-4">
+      <img src={Image} alt="Empty" className="size-25" />
+      <Typography variant="text" className="">
+        You don't have any gifts yet.
+      </Typography>
+      <Typography variant="text" className="text-primary">
+        Open Store
+      </Typography>
+    </Section>
+  );
+};
 
 export const GiftsOverview = () => {
+  const { data: user, isLoading } = useQuery({
+    queryKey: ["user"],
+    queryFn: () =>
+      getUsers().usersControllerGetMe({
+        headers: { Authorization: initDataRaw() },
+      }),
+  });
+  console.log(initDataRaw());
   return (
-    <div>
+    <Section className="h-full">
       <div className="flex flex-col pt-6 pb-7 items-center justify-center text-center gap-y-2">
-        <Heading>Send Gifts in Telegram</Heading>
-        <Paragraph className="max-w-xxs">
+        <Typography variant="title-lg">Send Gifts in Telegram</Typography>
+        <Typography variant="text" className="text-label-secondary max-w-xxs">
           Send gifts to users that can be stored in their app profile.
-        </Paragraph>
+        </Typography>
       </div>
-      <div className="grid grid-cols-3 py-2 gap-2">
-        <MiniGiftCard title="Delicious Cake" giftImage={GiftImage} />
-        <MiniGiftCard title="Green Star" giftImage={GreenStar} />
-        <MiniGiftCard title="Blue Star" giftImage={BlueStar} />
-        <MiniGiftCard title="Red Star" giftImage={RedStar} />
-        <MiniGiftCard title="Delicious Cake" giftImage={GiftImage} />
-        <MiniGiftCard title="Green Star" giftImage={GreenStar} />
-        <MiniGiftCard title="Blue Star" giftImage={BlueStar} />
-        <MiniGiftCard title="Red Star" giftImage={RedStar} />
-        <MiniGiftCard title="Delicious Cake" giftImage={GiftImage} />
-        <MiniGiftCard title="Green Star" giftImage={GreenStar} />
-        <MiniGiftCard title="Blue Star" giftImage={BlueStar} />
-        <MiniGiftCard title="Red Star" giftImage={RedStar} />
-      </div>
-    </div>
+      {!isLoading && user?.gifts?.length && user?.gifts?.length > 0 ? (
+        <div className="grid grid-cols-3 py-2 gap-2">
+          {user?.gifts?.map((gift) => (
+            <MiniGiftCard title={gift.name} giftImage={gift.imageUrl} />
+          ))}
+        </div>
+      ) : (
+        <GiftsEmpty />
+      )}
+    </Section>
   );
 };

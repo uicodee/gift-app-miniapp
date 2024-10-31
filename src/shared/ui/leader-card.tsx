@@ -2,9 +2,10 @@ import Gift from "@/assets/gift-fill.svg?react";
 import Gold from "@/assets/gold.png";
 import Silver from "@/assets/silver.png";
 import Bronze from "@/assets/bronze.png";
+import { Avatar } from "./avatar";
 
 interface LeaderCardProps {
-  avatar: string;
+  avatar?: string | null;
   fullName: string;
   gifts: number;
   place: number;
@@ -20,17 +21,17 @@ export const LeaderCard = ({
 }: LeaderCardProps) => {
   return (
     <div
-      className={`bg-white flex items-center pt-2 w-full gap-x-3 ${
-        me && "sticky bottom-[92px] z-10 border-t-0.5 border-t-separator"
+      className={`px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3 ${
+        me && "sticky bottom-0 border-b-0 border-t-separator z-20"
       }`}
     >
-      <div className="size-10">
-        <img src={avatar} alt="Avatar" className="object-cover" />
-      </div>
-      <div className="flex justify-between items-center w-full border-b-0.5 border-separator pb-2">
+      <Avatar path={avatar} fullName={fullName} />
+      <div className="flex justify-between items-center w-full border-b-0.3 border-b-separator pb-2">
         <div>
           <div className="flex items-center gap-x-1.5">
-            <span className="text-base-plus leading-5.5 ">{fullName}</span>
+            <span className="text-base-plus leading-5.5 text-accent-text-color">
+              {fullName}
+            </span>
             {me && (
               <span className="text-pre-xxs bg-label-secondary-20 text-label-secondary rounded leading-3.5 px-1">
                 You

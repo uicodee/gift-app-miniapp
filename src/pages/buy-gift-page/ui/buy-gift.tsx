@@ -1,38 +1,120 @@
-import GiftImage from "@/assets/gift-image.png";
-import TonBgIcon from "@/assets/ton-bg.svg?react";
 import { useBackBtn, useMainBtn } from "@/shared/hooks";
+import { Cell, DetailGiftCard, List, Section, Typography } from "@/shared/ui";
+import Avatar from "@/assets/avatar.png";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getGifts } from "@/shared/api/generated/gifts/gifts";
+import { useParams } from "react-router-dom";
+import { initDataRaw, openInvoice } from "@telegram-apps/sdk-react";
+import { BuyGiftDto, Gift } from "@/shared/api/model";
 
 export const BuyGift = () => {
-  useMainBtn("Buy a Gift", () => {});
+  const { giftId } = useParams<{ giftId: string }>();
+  const { data: gift, isLoading } = useQuery({
+    queryKey: ["gift", giftId],
+    queryFn: () =>
+      getGifts().giftsControllerFindOne(giftId as string, {
+        headers: { Authorization: initDataRaw() },
+      }),
+  });
+  const mutation = useMutation({
+    mutationFn: (variables: BuyGiftDto) =>
+      getGifts().giftsControllerBuy(variables),
+  });
+  useMainBtn("Buy a Gift", () => {
+    // mutation.mutate({gift: })
+    // @ts-ignore
+    mutation.mutate({ gift: gift?._id });
+    openInvoice(
+      "https://t.me/invoice/jd231xxSd1",
+      // "https://t.me/CryptoTestnetBot/app?startapp=invoice-IVdry0FatMRV",
+      "url"
+    );
+  });
   useBackBtn();
+
+  // const mutation = useMutation({
+  //   mutationFn: () => {
+  //     let data = JSON.stringify({
+  //       asset: "USDT",
+  //       amount: "10",
+  //     });
+
+  //     let config = {
+  //       method: "post",
+  //       maxBodyLength: Infinity,
+  //       url: "https://testnet-pay.crypt.bot/api/createInvoice",
+  //       headers: {
+  //         "Crypto-Pay-API-Token": "19418:AAnoxbznYKMyfuqz4o0CKRJVouAKRB65ZH9",
+  //         "Content-Type": "application/json",
+  //       },
+  //       data: data,
+  //     };
+
+  //     axios
+  //       .request(config)
+  //       .then((response) => {
+  //         console.log(JSON.stringify(response.data));
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   },
+  // });
+  if (isLoading) {
+    return null;
+  }
   return (
-    <div>
-      <div className="pt-4 pb-0">
-        <div className="relative w-full p-12 bg-gradient-to-b from-accent-gold-20 to-accent-gold-10 rounded-2xl ">
-          <div className="bg-pattern absolute inset-0 overflow-clip bg-auto rounded-2xl"></div>
-          <img src={GiftImage} alt="Gift Image" className="w-full z-20" />
-        </div>
-        <div className="flex flex-col bg-white py-3 gap-2">
-          <div className="flex items-center gap-x-3">
-            <h2 className="text-2xl font-semibold leading-9 text-black">
-              Delicious Cake
-            </h2>
-            <span className="text-accent-blue font-medium bg-accent-blue-10 px-2 rounded-full text-sm leading-5.5">
-              3 of 500
-            </span>
-          </div>
-          <p className="text-base-plus leading-5.5 text-label-secondary">
-            Purchase this gift for the opportunity to give it to another user.
-          </p>
-          <div className="flex items-center gap-2 py-1">
-            <TonBgIcon className="size-5" />
-            <span className="text-base-plus leading-5.5 font-medium">
-              10 TON
-            </span>
-          </div>
-        </div>
-        <div className="w-full mt-3 bg-white">Some</div>
-      </div>
-    </div>
+    <List>
+      <Section>
+        <DetailGiftCard gift={gift as Gift} />
+      </Section>
+      <Section>
+        <Cell
+          before={<img src={Avatar} className="size-10" />}
+          subhead={<Typography variant="caption">Send gift</Typography>}
+        >
+          <Typography variant="text-bold">
+            <span className="text-accent-blue">Alicia</span> sent gift to{" "}
+            <span className="text-accent-blue">Mark</span>
+          </Typography>
+        </Cell>
+        <Cell
+          before={<img src={Avatar} className="size-10" />}
+          subhead={<Typography variant="caption">Send gift</Typography>}
+        >
+          <Typography variant="text-bold">
+            <span className="text-accent-blue">Alicia</span> sent gift to{" "}
+            <span className="text-accent-blue">Mark</span>
+          </Typography>
+        </Cell>
+        <Cell
+          before={<img src={Avatar} className="size-10" />}
+          subhead={<Typography variant="caption">Send gift</Typography>}
+        >
+          <Typography variant="text-bold">
+            <span className="text-accent-blue">Alicia</span> sent gift to{" "}
+            <span className="text-accent-blue">Mark</span>
+          </Typography>
+        </Cell>
+        <Cell
+          before={<img src={Avatar} className="size-10" />}
+          subhead={<Typography variant="caption">Send gift</Typography>}
+        >
+          <Typography variant="text-bold">
+            <span className="text-accent-blue">Alicia</span> sent gift to{" "}
+            <span className="text-accent-blue">Mark</span>
+          </Typography>
+        </Cell>
+        <Cell
+          before={<img src={Avatar} className="size-10" />}
+          subhead={<Typography variant="caption">Send gift</Typography>}
+        >
+          <Typography variant="text-bold">
+            <span className="text-accent-blue">Alicia</span> sent gift to{" "}
+            <span className="text-accent-blue">Mark</span>
+          </Typography>
+        </Cell>
+      </Section>
+    </List>
   );
 };

@@ -5,7 +5,7 @@ interface MiniGiftCard {
 
 export const MiniGiftCard = ({ title, giftImage }: MiniGiftCard) => {
   return (
-    <div className="flex flex-col justify-between items-center bg-secondary rounded-xl px-3 py-2 text-center">
+    <div className="flex flex-col justify-between items-center bg-section rounded-xl px-3 py-2 text-center">
       <span className="text-xs text-label-secondary leading-4.5 font-light">
         {title}
       </span>

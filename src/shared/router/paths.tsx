@@ -42,14 +42,44 @@ const Profile = lazy(() =>
   }))
 );
 
+// const pageVariants = {
+//   initial: { opacity: 0 },
+//   enter: { opacity: 1 },
+//   exit: { opacity: 0 },
+// };
+
+// const pageTransition = {
+//   duration: 0.5,
+// };
+
+// const AnimatedRoute = ({ children }: { children: ReactNode }) => {
+//   return (
+//     <AnimatePresence>
+//       <motion.div
+//         initial="initial"
+//         animate="enter"
+//         exit="exit"
+//         variants={pageVariants}
+//         transition={{ duration: 0.5 }}
+//       >
+//         {children}
+//       </motion.div>
+//     </AnimatePresence>
+//   );
+// };
+
 export const paths = [
   {
     path: "",
-    element: <BottomBarLayout />,
+    element: <PageLayout />,
     children: [
       {
+        path: "buy/:giftId",
+        element: <BuyGift />,
+      },
+      {
         path: "",
-        element: <PageLayout />,
+        element: <BottomBarLayout />,
         children: [
           {
             index: true,
@@ -71,14 +101,14 @@ export const paths = [
       },
     ],
   },
-  {
-    path: "",
-    element: <PageLayout />,
-    children: [
-      {
-        path: "buy/:giftId",
-        element: <BuyGift />,
-      },
-    ],
-  },
+  // {
+  //   path: "",
+  //   element: <PageLayout />,
+  //   children: [
+  //     {
+  //       path: "buy/:giftId",
+  //       element: <BuyGift />,
+  //     },
+  //   ],
+  // },
 ];

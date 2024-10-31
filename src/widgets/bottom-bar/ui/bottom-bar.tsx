@@ -57,7 +57,6 @@ const preloadAnimations = async () => {
     Profile: null,
   };
 
-  // Загрузка данных JSON
   for (const key in animations) {
     const icon = key as IconType;
     try {
@@ -79,7 +78,6 @@ export const BottomBar: React.FC = () => {
     any
   > | null>(null);
 
-  // Предварительная загрузка анимаций при монтировании компонента
   useEffect(() => {
     const loadAnimations = async () => {
       const data = await preloadAnimations();
@@ -97,7 +95,6 @@ export const BottomBar: React.FC = () => {
     }
   };
 
-  // Функция для отображения иконок с анимацией
   const getBarIcon = (
     isActive: boolean,
     icon: IconType,
@@ -107,7 +104,7 @@ export const BottomBar: React.FC = () => {
       return (
         <Lottie
           animationData={preloadedAnimations[icon]}
-          className="w-[26px] h-[26px] text-accent-blue"
+          className="size-6.5 text-accent-blue"
           ref={lottieRef}
           play
           loop={false}
@@ -117,21 +114,18 @@ export const BottomBar: React.FC = () => {
 
     switch (icon) {
       case "Store":
-        return <Store className="text-tabbar-icons" />;
+        return <Store className="size-6.5 text-tabbar-icons" />;
       case "Gifts":
-        return <Gift className="text-tabbar-icons" />;
+        return <Gift className="size-6.5 text-tabbar-icons" />;
       case "Leaderboard":
-        return <Leaderboard className="text-tabbar-icons" />;
+        return <Leaderboard className="size-6.5 text-tabbar-icons" />;
       case "Profile":
-        return <Profile className="text-tabbar-icons" />;
+        return <Profile className="size-6.5 text-tabbar-icons" />;
     }
   };
 
   return (
-    <div
-      className="w-full absolute bottom-0 bg-tabbar h-[92px] z-30 backdrop-blur-max pt-2 overflow-x-clip"
-      style={{ border: "0.33px solid var(--separator)" }}
-    >
+    <div className="w-full absolute bottom-0 bg-bg-tabbar mt-[92px] h-[92px] z-30 backdrop-blur-max pt-2 overflow-x-clip border-t-0.3 border-separator">
       <div className="flex justify-between">
         {barItems.map((item, index) => {
           const isActive = location.pathname === item.href;
@@ -143,11 +137,11 @@ export const BottomBar: React.FC = () => {
           return (
             <Link
               to={item.href}
-              className="flex flex-col gap-y-1 justify-center items-center"
+              className="flex flex-col gap-y-1 justify-center items-center cursor-pointer"
               key={item.title}
               onClick={() => handleClick(index)}
             >
-              <div className="px-9 py-1 justify-center items-center">
+              <div className="px-9 py-1 justify-center items-center cursor-pointer">
                 {getBarIcon(
                   isActive,
                   item.title as IconType,
@@ -157,7 +151,7 @@ export const BottomBar: React.FC = () => {
               <span
                 style={{ fontSize: "10px" }}
                 className={cn(
-                  "font-medium leading-3",
+                  "font-medium leading-3 cursor-pointer",
                   isActive ? "text-accent-blue" : "text-label-tabbar"
                 )}
               >
