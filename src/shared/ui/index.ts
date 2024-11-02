@@ -1,4 +1,4 @@
-export { GiftCard } from "./gift-card";
+export { GiftCard, LoadingGiftCard } from "./gift-card";
 export { DetailGiftCard } from "./detail-gift-card";
 export { MiniGiftCard } from "./mini-gift-card";
 export { LeaderCard } from "./leader-card";

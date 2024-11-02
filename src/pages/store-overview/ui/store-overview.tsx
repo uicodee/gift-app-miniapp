@@ -2,11 +2,15 @@ import Gift from "@/assets/gift-fill.svg?react";
 import { GiftCard, Section, Typography } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getGifts } from "@/shared/api/generated/gifts/gifts";
-import { CardVariants, Currencies } from "@/shared/ui/gift-card";
+import {
+  CardVariants,
+  Currencies,
+  LoadingGiftCard,
+} from "@/shared/ui/gift-card";
 import { initDataRaw } from "@telegram-apps/sdk-react";
 
 export const StoreOverview = () => {
-  const { data: gifts } = useQuery({
+  const { data: gifts, isLoading } = useQuery({
     queryKey: ["gifts"],
     queryFn: () =>
       getGifts().giftsControllerFindAll({
@@ -25,73 +29,23 @@ export const StoreOverview = () => {
         </Typography>
       </Section>
       <Section className="grid grid-cols-2 gap-3 py-4">
-        {gifts?.map((gift) => (
-          <GiftCard
-            // @ts-ignore
-            id={gift._id}
-            edition={gift.availability}
-            ofEdition={gift.totalIssued}
-            title={gift.name}
-            price={gift.price}
-            variant={gift.variant as CardVariants["variant"]}
-            currency={gift.currency as Currencies}
-            animationUrl={gift.animationUrl}
-          />
-        ))}
-        {/* <GiftCard
-          edition={3}
-          ofEdition={500}
-          title="Delicious Cake"
-          price="10"
-          variant="gold"
-          currency="USDT"
-          giftImage={GiftImage}
-        />
-        <GiftCard
-          edition={802}
-          ofEdition={3000}
-          title="Green Star"
-          price="5"
-          variant="green"
-          currency="TON"
-          giftImage={GreenStar}
-        />
-        <GiftCard
-          edition={458}
-          ofEdition={5000}
-          title="Blue Star"
-          price="10"
-          variant="blue"
-          currency="ETH"
-          giftImage={BlueStar}
-        />
-        <GiftCard
-          edition={10000}
-          ofEdition={10000}
-          title="Red Star"
-          price="10"
-          variant="red"
-          currency="USDT"
-          giftImage={RedStar}
-        />
-        <GiftCard
-          edition={3}
-          ofEdition={500}
-          title="Delicious Cake"
-          price="10"
-          variant="gold"
-          currency="USDT"
-          giftImage={GiftImage}
-        />
-        <GiftCard
-          edition={802}
-          ofEdition={3000}
-          title="Green Star"
-          price="10"
-          variant="green"
-          currency="TON"
-          giftImage={GreenStar}
-        /> */}
+        {isLoading
+          ? Array(4)
+              .fill(0)
+              .map((_, index) => <LoadingGiftCard key={index} />)
+          : gifts?.map((gift) => (
+              <GiftCard
+                // @ts-ignore
+                id={gift._id}
+                edition={gift.availability}
+                ofEdition={gift.totalIssued}
+                title={gift.name}
+                price={gift.price}
+                variant={gift.variant as CardVariants["variant"]}
+                currency={gift.currency as Currencies}
+                animationUrl={gift.animationUrl}
+              />
+            ))}
       </Section>
     </>
   );

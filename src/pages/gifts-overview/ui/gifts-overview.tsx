@@ -26,7 +26,6 @@ export const GiftsOverview = () => {
         headers: { Authorization: initDataRaw() },
       }),
   });
-  console.log(initDataRaw());
   return (
     <Section className="h-full">
       <div className="flex flex-col pt-6 pb-7 items-center justify-center text-center gap-y-2">
