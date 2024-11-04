@@ -328,7 +328,10 @@ export default {
         placeholder: "var(--placeholder)",
         section: "var(--section-bg-color)",
         white: "var(--color-white)",
-        black: "var(--color-black)",
+        black: {
+          DEFAULT: "var(--color-black)",
+          40: "var(--color-black-40)",
+        },
         primary: "var(--color-primary)",
 
         "accent-blue": {
@@ -391,6 +394,9 @@ export default {
         "pre-xs": "13px",
         "pre-sm": "15px",
         "base-plus": "17px",
+      },
+      size: {
+        37.5: "150px",
       },
       lineHeight: {
         3.5: "14px",

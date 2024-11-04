@@ -101,14 +101,4 @@ export const paths = [
       },
     ],
   },
-  // {
-  //   path: "",
-  //   element: <PageLayout />,
-  //   children: [
-  //     {
-  //       path: "buy/:giftId",
-  //       element: <BuyGift />,
-  //     },
-  //   ],
-  // },
 ];

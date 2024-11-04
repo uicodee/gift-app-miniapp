@@ -1,8 +1,9 @@
 import { Typography, MiniGiftCard, Section } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
-import { initDataRaw } from "@telegram-apps/sdk-react";
+import { initDataRaw, mainButton } from "@telegram-apps/sdk-react";
 import Image from "@/assets/image.png";
+import { Modal, useViewGift } from "@/features/view-gift";
 
 const GiftsEmpty = () => {
   return (
@@ -19,6 +20,7 @@ const GiftsEmpty = () => {
 };
 
 export const GiftsOverview = () => {
+  const setOpen = useViewGift((state) => state.setOpen);
   const { data: user, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
@@ -28,6 +30,7 @@ export const GiftsOverview = () => {
   });
   return (
     <Section className="h-full">
+      <Modal />
       <div className="flex flex-col pt-6 pb-7 items-center justify-center text-center gap-y-2">
         <Typography variant="title-lg">Send Gifts in Telegram</Typography>
         <Typography variant="text" className="text-label-secondary max-w-xxs">
@@ -37,7 +40,20 @@ export const GiftsOverview = () => {
       {!isLoading && user?.gifts?.length && user?.gifts?.length > 0 ? (
         <div className="grid grid-cols-3 py-2 gap-2">
           {user?.gifts?.map((gift) => (
-            <MiniGiftCard title={gift.name} giftImage={gift.imageUrl} />
+            <MiniGiftCard
+              title={gift.name}
+              giftImage={gift.imageUrl}
+              onClick={() => {
+                setOpen(true);
+                mainButton.mount();
+                mainButton.setParams({
+                  backgroundColor: "#007aff",
+                  text: "Buy Gift",
+                  isVisible: true,
+                  isEnabled: true,
+                });
+              }}
+            />
           ))}
         </div>
       ) : (

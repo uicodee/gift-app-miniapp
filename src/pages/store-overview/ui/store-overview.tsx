@@ -30,7 +30,7 @@ export const StoreOverview = () => {
       </Section>
       <Section className="grid grid-cols-2 gap-3 py-4">
         {isLoading
-          ? Array(4)
+          ? Array(6)
               .fill(0)
               .map((_, index) => <LoadingGiftCard key={index} />)
           : gifts?.map((gift) => (

@@ -1,5 +1,12 @@
 import { useBackBtn, useMainBtn } from "@/shared/hooks";
-import { Cell, DetailGiftCard, List, Section, Typography } from "@/shared/ui";
+import {
+  Cell,
+  DetailGiftCard,
+  DetailGiftCardSkeleton,
+  List,
+  Section,
+  Typography,
+} from "@/shared/ui";
 import Avatar from "@/assets/avatar.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getGifts } from "@/shared/api/generated/gifts/gifts";
@@ -60,13 +67,17 @@ export const BuyGift = () => {
   //       });
   //   },
   // });
-  if (isLoading) {
-    return null;
-  }
+  // if (isLoading) {
+  //   return null;
+  // }
   return (
     <List>
       <Section>
-        <DetailGiftCard gift={gift as Gift} />
+        {isLoading ? (
+          <DetailGiftCardSkeleton />
+        ) : (
+          <DetailGiftCard gift={gift as Gift} />
+        )}
       </Section>
       <Section>
         <Cell
