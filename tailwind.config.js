@@ -422,6 +422,9 @@ export default {
       borderWidth: {
         0.3: "0.33px",
       },
+      borderRadius: {
+        "pre-xl": "10px",
+      },
     },
   },
   plugins: [],

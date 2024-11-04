@@ -1,6 +1,5 @@
 import { Drawer } from "vaul";
 import { useViewGift } from "../model/store";
-import Lottie from "react-lottie-player";
 import { Typography } from "@/shared/ui";
 import { mainButton } from "@telegram-apps/sdk-react";
 
@@ -21,18 +20,28 @@ export const Modal = () => {
     >
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black-40" />
-        <Drawer.Content className="bg-secondary-bg-color flex flex-col rounded-2xl mt-24 h-fit fixed bottom-0 left-0 right-0 outline-none z-30">
-          <div className="flex flex-col justify-center items-center p-4 bg-secondary-bg-color rounded-t-2xl flex-1">
-            <Lottie
+        <Drawer.Content className="bg-bg-color flex flex-col rounded-2xl mt-24 h-fit fixed bottom-0 left-0 right-0 outline-none z-30">
+          <div className="flex flex-col justify-center items-center p-4 bg-bg-color rounded-t-2xl flex-1">
+            {/* <Lottie
+              play
+              loop
+              path="https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/emoji-balloons.json"
+            /> */}
+            <img
+              src="https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/gift-image.png"
+              alt=""
+              className="size-37.5"
+            />
+            {/* <Lottie
               play
               loop
               path="https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/gift-delicious-cake.json"
               className="size-37.5"
-            />
+            /> */}
             <Typography variant="title-lg" className="mt-3 mb-6">
               Send Gift
             </Typography>
-            <div className="w-full bg-bg-color rounded-xl">
+            <div className="w-full bg-section rounded-xl">
               <div className="grid grid-cols-3 text-accent-text-color">
                 <div className="col-span-1 px-4 py-2.5 border-separator border-r-0.3 border-b-0.3">
                   Gift

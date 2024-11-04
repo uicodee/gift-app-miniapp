@@ -42,6 +42,12 @@ const Profile = lazy(() =>
   }))
 );
 
+const RecentAction = lazy(() =>
+  import("@/pages/recent-action-overview").then((module) => ({
+    default: module.RecentActionOverview,
+  }))
+);
+
 // const pageVariants = {
 //   initial: { opacity: 0 },
 //   enter: { opacity: 1 },
@@ -95,7 +101,16 @@ export const paths = [
           },
           {
             path: "profile",
-            element: <Profile />,
+            children: [
+              {
+                index: true,
+                element: <Profile />,
+              },
+              {
+                path: "recent-action",
+                element: <RecentAction />,
+              },
+            ],
           },
         ],
       },

@@ -1,11 +1,12 @@
 import { Section, Typography } from "@/shared/ui";
 import Avatar from "@/assets/Avatar - People - Mark.png";
+import { Link } from "react-router-dom";
 
 export const ProfileOverview = () => {
   return (
     <Section>
-      <div className="flex justify-between py-2">
-        <div>Theme</div>
+      <div className="flex items-start justify-between py-2">
+        <div className="bg-secondary-bg-color">Theme</div>
         <div className="text-center">
           <div className="flex flex-col relative items-center  mb-3 text-center">
             <div>
@@ -21,9 +22,11 @@ export const ProfileOverview = () => {
           <Typography variant="text" className="text-label-secondary mb-6">
             128 gift received
           </Typography>
-          <Typography variant="text" className="text-primary">
-            Recent Actions
-          </Typography>
+          <Link to="recent-action">
+            <Typography variant="text" className="text-primary">
+              Recent Actions
+            </Typography>
+          </Link>
         </div>
         <div>Language</div>
       </div>
