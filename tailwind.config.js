@@ -397,6 +397,7 @@ export default {
       },
       size: {
         37.5: "150px",
+        7.5: "30px",
       },
       lineHeight: {
         3.5: "14px",

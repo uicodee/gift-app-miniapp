@@ -2,25 +2,32 @@ import { Drawer } from "vaul";
 import { useViewGift } from "../model/store";
 import { Typography } from "@/shared/ui";
 import { mainButton } from "@telegram-apps/sdk-react";
+import CloseIcon from "@/assets/x-mark.svg?react";
 
 export const Modal = () => {
   const open = useViewGift((state) => state.open);
   const setOpen = useViewGift((state) => state.setOpen);
+  const onClose = () => {
+    setOpen(false);
+    mainButton.setParams({
+      hasShineEffect: false,
+      isVisible: false,
+      isEnabled: false,
+    });
+  };
   return (
-    <Drawer.Root
-      open={open}
-      onClose={() => {
-        setOpen(false);
-        mainButton.setParams({
-          hasShineEffect: false,
-          isVisible: false,
-          isEnabled: false,
-        });
-      }}
-    >
+    <Drawer.Root open={open} onClose={onClose}>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black-40" />
         <Drawer.Content className="bg-bg-color flex flex-col rounded-2xl mt-24 h-fit fixed bottom-0 left-0 right-0 outline-none z-30">
+          <div className="flex justify-end pt-3 px-4">
+            <div
+              className="flex justify-center items-center rounded-full bg-[#E3E3E8] size-7.5"
+              onClick={onClose}
+            >
+              <CloseIcon />
+            </div>
+          </div>
           <div className="flex flex-col justify-center items-center p-4 bg-bg-color rounded-t-2xl flex-1">
             {/* <Lottie
               play

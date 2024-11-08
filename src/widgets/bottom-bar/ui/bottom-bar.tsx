@@ -14,7 +14,6 @@ import {
 import Lottie from "react-lottie-player";
 import { AnimationItem } from "lottie-web";
 import { hapticFeedback } from "@telegram-apps/sdk-react";
-import axios from "axios";
 
 type IconType = "Store" | "Gifts" | "Leaderboard" | "Profile";
 
@@ -37,19 +36,18 @@ const barItems = [
   },
 ];
 
-// Загрузка JSON файлов анимации
-const preloadAnimations = async () => {
-  const animations: Record<IconType, string> = {
-    Store:
-      "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-store.json",
-    Gifts:
-      "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-gifts.json",
-    Leaderboard:
-      "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-leaderboard.json",
-    Profile:
-      "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-profile.json",
-  };
+const animations: Record<IconType, string> = {
+  Store:
+    "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-store.json",
+  Gifts:
+    "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-gifts.json",
+  Leaderboard:
+    "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-leaderboard.json",
+  Profile:
+    "https://s3.timeweb.com/2628aad9-67413717-083e-4baa-94e9-20cf6acb1ec4/tab-profile.json",
+};
 
+const preloadAnimations = async () => {
   const preloadedData: Record<IconType, any> = {
     Store: null,
     Gifts: null,
@@ -57,13 +55,23 @@ const preloadAnimations = async () => {
     Profile: null,
   };
 
+  const cache = await caches.open("lottie-animations");
+
   for (const key in animations) {
     const icon = key as IconType;
-    try {
-      const response = await axios.get(animations[icon]);
-      preloadedData[icon] = response.data;
-    } catch (error) {
-      console.error(`Ошибка загрузки анимации для ${icon}`, error);
+    const cachedResponse = await cache.match(animations[icon]);
+
+    if (cachedResponse) {
+      preloadedData[icon] = await cachedResponse.json();
+    } else {
+      try {
+        const response = await fetch(animations[icon]);
+        const data = await response.json();
+        cache.put(animations[icon], new Response(JSON.stringify(data)));
+        preloadedData[icon] = data;
+      } catch (error) {
+        console.error(`Ошибка загрузки анимации для ${icon}`, error);
+      }
     }
   }
 

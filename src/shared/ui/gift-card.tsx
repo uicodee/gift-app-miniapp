@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "./utils";
@@ -50,6 +50,25 @@ export const GiftCard = React.memo(
     currency,
     animationUrl,
   }: GiftCardProps) => {
+    const [animationData, setAnimationData] = useState(null);
+
+    useEffect(() => {
+      const fetchAnimation = async () => {
+        const cache = await caches.open("lottie-animations");
+        const cachedResponse = await cache.match(animationUrl);
+        if (cachedResponse) {
+          setAnimationData(await cachedResponse.json());
+        } else {
+          const response = await fetch(animationUrl);
+          const data = await response.json();
+          cache.put(animationUrl, new Response(JSON.stringify(data)));
+          setAnimationData(data);
+        }
+      };
+
+      fetchAnimation();
+    }, [animationUrl]);
+
     const [formattedEdition, formattedOfEdition] = useMemo(
       () => [
         new Intl.NumberFormat("en", {
@@ -63,7 +82,6 @@ export const GiftCard = React.memo(
       ],
       [edition, ofEdition]
     );
-
     return (
       <Link
         to={`buy/${id}`}
@@ -77,12 +95,16 @@ export const GiftCard = React.memo(
           {formattedEdition} of {formattedOfEdition}
         </span>
         <div className="flex flex-col items-center justify-center gap-1">
-          <Lottie
-            play
-            loop={false}
-            path={animationUrl}
-            className="size-32 z-10"
-          />
+          {animationData ? (
+            <Lottie
+              play
+              loop={false}
+              animationData={animationData}
+              className="size-32 z-10"
+            />
+          ) : (
+            <div className="size-32"></div>
+          )}
           <Typography variant="text-bold">{title}</Typography>
         </div>
         <div className="flex w-full items-center justify-center z-10">

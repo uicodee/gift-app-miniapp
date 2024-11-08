@@ -1,17 +1,11 @@
 import { FC, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "@/shared/router";
-import {
-  miniApp,
-  swipeBehavior,
-  themeParams,
-  useSignal,
-  viewport,
-} from "@telegram-apps/sdk-react";
+import { miniApp, swipeBehavior, viewport } from "@telegram-apps/sdk-react";
 
 export const App: FC = () => {
-  const isDark = useSignal(themeParams.isDark);
-  // const isDark = true;
+  // const isDark = useSignal(themeParams.isDark);
+  const isDark = false;
   console.log(isDark);
 
   useEffect(() => {
