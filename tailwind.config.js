@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         "bg-color": "var(--bg-color)",
+        invert: "var(--invert-bg)",
         "secondary-bg-color": "var(--secondary-bg-color)",
         "accent-text-color": "var(--accent-text-color)",
         "secondary-text-color": "var(--secondary-text-color)",

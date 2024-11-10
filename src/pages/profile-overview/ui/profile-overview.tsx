@@ -92,7 +92,7 @@ export const ProfileOverview = () => {
   return (
     <Section>
       <div className="flex items-start justify-between pt-2 w-full">
-        <div className="inline-flex rounded-full bg-secondary-bg-color p-0.5">
+        <div className="inline-flex rounded-full bg-invert p-0.5">
           <button
             onClick={() => onThemeToggle(true)}
             className={cn(
@@ -148,7 +148,7 @@ export const ProfileOverview = () => {
           </Link>
         </div>
 
-        <div className="inline-flex rounded-full bg-secondary-bg-color p-0.5">
+        <div className="inline-flex rounded-full bg-invert p-0.5">
           <button
             onClick={() => onLanguageChange("EN")}
             className={cn(
