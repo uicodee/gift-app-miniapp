@@ -3,6 +3,7 @@ import Gold from "@/assets/gold.png";
 import Silver from "@/assets/silver.png";
 import Bronze from "@/assets/bronze.png";
 import { Avatar } from "./avatar";
+import { cn } from "./utils";
 
 interface LeaderCardProps {
   avatar?: string | null;
@@ -21,12 +22,22 @@ export const LeaderCard = ({
 }: LeaderCardProps) => {
   return (
     <div
-      className={`px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3 ${
-        me && "sticky bottom-0 border-b-0 border-t-separator z-20"
-      }`}
+      className={cn(
+        "group px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3",
+        me &&
+          "sticky bottom-0 border-b-0 border-b-transparent border-t-0.3 border-t-separator z-20"
+      )}
+      // className={`px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3 ${
+      //   me && "sticky bottom-0 border-b-0 border-t-separator z-20"
+      // }`}
     >
       <Avatar path={avatar} fullName={fullName} />
-      <div className="flex justify-between items-center w-full border-b-0.3 border-b-separator pb-2">
+      <div
+        className={cn(
+          "group-last:border-b-0 flex justify-between items-center w-full  border-b-separator pb-2",
+          !me && "border-b-0.3"
+        )}
+      >
         <div>
           <div className="flex items-center gap-x-1.5">
             <span className="text-base-plus leading-5.5 text-accent-text-color">

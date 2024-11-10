@@ -17,6 +17,7 @@ export const StoreOverview = () => {
         headers: { Authorization: initDataRaw() },
       }),
   });
+
   return (
     <>
       <Section className="flex flex-col pt-6 pb-4 items-center justify-center">
@@ -35,6 +36,8 @@ export const StoreOverview = () => {
               .map((_, index) => <LoadingGiftCard key={index} />)
           : gifts?.map((gift) => (
               <GiftCard
+                // @ts-ignore
+                key={gift._id}
                 // @ts-ignore
                 id={gift._id}
                 edition={gift.availability}

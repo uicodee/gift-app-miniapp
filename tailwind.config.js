@@ -414,6 +414,9 @@ export default {
         half: "50px",
         max: "100px",
       },
+      padding: {
+        0.75: "3px",
+      },
       maxWidth: {
         xxs: "280px",
       },
@@ -425,6 +428,10 @@ export default {
       },
       borderRadius: {
         "pre-xl": "10px",
+      },
+      boxShadow: {
+        "custom-light": "0px 3px 1px 0px rgba(0, 0, 0, 0.04)",
+        "custom-medium": "0px 3px 8px 0px rgba(0, 0, 0, 0.12)",
       },
     },
   },

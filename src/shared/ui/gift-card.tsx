@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "./utils";
@@ -7,6 +7,7 @@ import Lottie from "react-lottie-player";
 import UsdtIcon from "@/assets/usdt.svg?react";
 import TonIcon from "@/assets/ton.svg?react";
 import EthIcon from "@/assets/eth.svg?react";
+import { useCachedData, useFormattedNumbers } from "../hooks";
 
 export type Currencies = "USDT" | "TON" | "ETH";
 
@@ -50,38 +51,14 @@ export const GiftCard = React.memo(
     currency,
     animationUrl,
   }: GiftCardProps) => {
-    const [animationData, setAnimationData] = useState(null);
+    const animationData = useCachedData(animationUrl, {
+      cacheName: "lottie-animations",
+    });
+    const [formattedEdition, formattedOfEdition] = useFormattedNumbers([
+      edition,
+      ofEdition,
+    ]);
 
-    useEffect(() => {
-      const fetchAnimation = async () => {
-        const cache = await caches.open("lottie-animations");
-        const cachedResponse = await cache.match(animationUrl);
-        if (cachedResponse) {
-          setAnimationData(await cachedResponse.json());
-        } else {
-          const response = await fetch(animationUrl);
-          const data = await response.json();
-          cache.put(animationUrl, new Response(JSON.stringify(data)));
-          setAnimationData(data);
-        }
-      };
-
-      fetchAnimation();
-    }, [animationUrl]);
-
-    const [formattedEdition, formattedOfEdition] = useMemo(
-      () => [
-        new Intl.NumberFormat("en", {
-          notation: "compact",
-          compactDisplay: "short",
-        }).format(edition),
-        new Intl.NumberFormat("en", {
-          notation: "compact",
-          compactDisplay: "short",
-        }).format(ofEdition),
-      ],
-      [edition, ofEdition]
-    );
     return (
       <Link
         to={`buy/${id}`}

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
 const typography = cva("font-sans", {
@@ -24,12 +24,18 @@ const typography = cva("font-sans", {
 interface TypographyProps extends VariantProps<typeof typography> {
   children: ReactNode;
   className?: string;
+  style?: CSSProperties;
 }
 
 export const Typography = ({
   variant = "text",
   children,
   className = "",
+  style,
 }: TypographyProps) => {
-  return <div className={typography({ variant, className })}>{children}</div>;
+  return (
+    <div className={typography({ variant, className })} style={style}>
+      {children}
+    </div>
+  );
 };

@@ -6,7 +6,6 @@ import { miniApp, swipeBehavior, viewport } from "@telegram-apps/sdk-react";
 export const App: FC = () => {
   // const isDark = useSignal(themeParams.isDark);
   const isDark = false;
-  console.log(isDark);
 
   useEffect(() => {
     if (isDark) {

@@ -42,7 +42,7 @@ export const GiftsOverview = () => {
           {user?.gifts?.map((gift) => (
             <MiniGiftCard
               title={gift.name}
-              giftImage={gift.imageUrl}
+              giftImageUrl={gift.imageUrl}
               onClick={() => {
                 setOpen(true);
                 mainButton.mount();

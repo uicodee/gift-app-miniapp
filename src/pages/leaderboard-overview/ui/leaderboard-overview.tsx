@@ -11,13 +11,13 @@ export const LeaderboardOverview = () => {
   });
   return (
     <>
-      <div className="sticky top-0 w-full pt-2.5 pb-2 bg-bg-color border-b-0.3 border-separator z-20">
+      <div className="sticky top-0 w-full pt-2.5 pb-2 bg-bg-color border-b-0.3 border-separator z-30">
         <Section className="relative">
           {/* <Search className="size-5 absolute" /> */}
           <input
             type="text"
             placeholder="Search"
-            className="bg-input w-full py-2 placeholder:text-placeholder placeholder:text-center  placeholder:text-base-plus placeholder:leading-5.5 rounded-xl outline-none px-4 "
+            className="bg-input w-full py-2 placeholder:text-placeholder placeholder:text-center  placeholder:text-base-plus placeholder:leading-5.5 rounded-pre-xl outline-none px-4 "
           />
         </Section>
       </div>
@@ -25,11 +25,13 @@ export const LeaderboardOverview = () => {
         <div className="flex flex-col">
           {users?.map((user, index) => (
             <LeaderCard
+              key={index}
               avatar={user.profilePhoto}
               fullName={user.fullName}
               gifts={user.gifts?.length as number}
               place={index + 1}
               me={initDataUser()?.id === user.telegramId}
+              // me={user.telegramId === 247753204}
             />
           ))}
           {/* <LeaderCard
