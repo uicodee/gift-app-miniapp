@@ -1,4 +1,9 @@
-import { Typography, MiniGiftCard, Section } from "@/shared/ui";
+import {
+  Typography,
+  MiniGiftCard,
+  Section,
+  MiniGiftCardSkeleton,
+} from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
 import { initDataRaw, mainButton } from "@telegram-apps/sdk-react";
@@ -9,9 +14,7 @@ const GiftsEmpty = () => {
   return (
     <Section className="flex flex-col justify-center items-center text-center bg-section rounded-xl py-8 gap-y-4">
       <img src={Image} alt="Empty" className="size-25" />
-      <Typography variant="text" className="">
-        You don't have any gifts yet.
-      </Typography>
+      <Typography variant="text">You don't have any gifts yet.</Typography>
       <Typography variant="text" className="text-primary">
         Open Store
       </Typography>
@@ -28,6 +31,9 @@ export const GiftsOverview = () => {
         headers: { Authorization: initDataRaw() },
       }),
   });
+
+  const gifts = user?.gifts ?? [];
+
   return (
     <Section className="h-full">
       <Modal />
@@ -37,10 +43,17 @@ export const GiftsOverview = () => {
           Send gifts to users that can be stored in their app profile.
         </Typography>
       </div>
-      {!isLoading && user?.gifts?.length && user?.gifts?.length > 0 ? (
+      {isLoading ? (
         <div className="grid grid-cols-3 py-2 gap-2">
-          {user?.gifts?.map((gift) => (
+          {Array.from({ length: 9 }).map((_, index) => (
+            <MiniGiftCardSkeleton key={index} />
+          ))}
+        </div>
+      ) : gifts.length > 0 ? (
+        <div className="grid grid-cols-3 py-2 gap-2">
+          {gifts.map((gift, index) => (
             <MiniGiftCard
+              key={index}
               title={gift.name}
               giftImageUrl={gift.imageUrl}
               onClick={() => {

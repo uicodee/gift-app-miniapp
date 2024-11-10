@@ -19,6 +19,7 @@ export const useCachedData = <T,>(
         const cachedResponse = await cache.match(url);
 
         if (cachedResponse) {
+          console.log("Cached data");
           const cachedData = await cachedResponse.json();
           setData(cachedData);
         } else {

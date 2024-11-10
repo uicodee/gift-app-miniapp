@@ -1,10 +1,12 @@
 import { Section, Typography } from "@/shared/ui";
 import Avatar from "@/assets/Avatar - People - Mark.png";
 import { Link } from "react-router-dom";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Recent from "@/assets/recent.svg?react";
 import Sun from "@/assets/sun.svg?react";
 import Moon from "@/assets/moon.svg?react";
+import { cn } from "@/shared/ui/utils";
+// import { cn } from "@/shared/ui/utils";
 
 interface GiftProps {
   profilePhoto: string;
@@ -53,6 +55,16 @@ const Gift = ({
 };
 
 export const ProfileOverview = () => {
+  const [isLight, setIsLight] = useState(true);
+  const [language, setLanguage] = useState("EN");
+  const onThemeToggle = (isLight: boolean) => {
+    setIsLight(isLight);
+    if (isLight) document.body.classList.remove("dark");
+    else document.body.classList.add("dark");
+  };
+  const onLanguageChange = (language: string) => {
+    setLanguage(language);
+  };
   const gifts = [
     {
       edition: 1,
@@ -80,15 +92,35 @@ export const ProfileOverview = () => {
   return (
     <Section>
       <div className="flex items-start justify-between pt-2 w-full">
-        <div className="bg-secondary-bg-color rounded-full">
-          <div className="flex p-0.5">
-            <div className="bg-white py-0.75 px-2.5 rounded-full shadow-custom-medium">
-              <Sun className="w-[18px] h-[22px]" />
-            </div>
-            <div className="py-0.75 px-2.5 rounded-full">
-              <Moon className="w-[18px] h-[22px]" />
-            </div>
-          </div>
+        <div className="inline-flex rounded-full bg-secondary-bg-color p-0.5">
+          <button
+            onClick={() => onThemeToggle(true)}
+            className={cn(
+              "rounded-full px-2.5 py-0.75 transition-none",
+              isLight && "bg-bg-color"
+            )}
+          >
+            <Sun
+              className={cn(
+                "h-[22px] w-[18px]",
+                !isLight ? "text-label-secondary" : "text-accent-text-color"
+              )}
+            />
+          </button>
+          <button
+            onClick={() => onThemeToggle(false)}
+            className={cn(
+              "rounded-full px-2.5 py-0.75 transition-none",
+              !isLight && "bg-bg-color"
+            )}
+          >
+            <Moon
+              className={cn(
+                "h-[22px] w-[17px]",
+                isLight ? "text-label-secondary" : "text-accent-text-color"
+              )}
+            />
+          </button>
         </div>
 
         <div className="text-center w-6/12">
@@ -98,7 +130,7 @@ export const ProfileOverview = () => {
               alt="User Avatar"
               className="size-25 rounded-full"
             />
-            <div className="absolute -bottom-2 rounded-full text-center bg-label-secondary text-white font-medium px-2 leading-5.5 outline-2 outline outline-white text-pre-xs">
+            <div className="absolute -bottom-2 rounded-full text-center bg-label-secondary text-white font-medium px-2 leading-5.5 outline-2 outline outline-bg-color text-pre-xs">
               #160
             </div>
           </div>
@@ -116,15 +148,39 @@ export const ProfileOverview = () => {
           </Link>
         </div>
 
-        <div className="bg-secondary-bg-color rounded-full">
-          <div className="flex p-0.5">
-            <div className="bg-white py-0.75 px-2.5 rounded-full shadow-custom-medium">
-              <span className="text-sm leading-5.5 font-semibold">EN</span>
-            </div>
-            <div className="py-0.75 px-2.5 rounded-full">
-              <span className="text-sm leading-5.5 font-semibold">RU</span>
-            </div>
-          </div>
+        <div className="inline-flex rounded-full bg-secondary-bg-color p-0.5">
+          <button
+            onClick={() => onLanguageChange("EN")}
+            className={cn(
+              "rounded-full px-2.5 py-0.75 text-label-secondary",
+              language === "EN" && "bg-bg-color text-accent-text-color"
+            )}
+          >
+            <span className="text-sm font-semibold leading-5.5 transition-none">
+              EN
+            </span>
+            {/* <Sun
+              className={cn(
+                "h-[22px] w-[18px]",
+                !isLight && "text-label-secondary"
+              )}
+            /> */}
+          </button>
+          <button
+            onClick={() => onLanguageChange("RU")}
+            className={cn(
+              "rounded-full px-2.5 py-0.75 text-label-secondary transition-none",
+              language === "RU" && "bg-bg-color text-accent-text-color"
+            )}
+          >
+            <span className="text-sm font-semibold leading-5.5">RU</span>
+            {/* <Moon
+              className={cn(
+                "h-[22px] w-[17px]",
+                isLight && "text-label-secondary"
+              )}
+            /> */}
+          </button>
         </div>
       </div>
 

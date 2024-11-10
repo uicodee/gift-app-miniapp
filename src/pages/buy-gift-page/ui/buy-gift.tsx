@@ -25,15 +25,17 @@ export const BuyGift = () => {
   });
   const mutation = useMutation({
     mutationFn: (variables: BuyGiftDto) =>
-      getGifts().giftsControllerBuy(variables),
+      getGifts().giftsControllerBuy(variables, {
+        headers: { Authorization: initDataRaw() },
+      }),
   });
   useMainBtn("Buy a Gift", () => {
     // mutation.mutate({gift: })
     // @ts-ignore
     mutation.mutate({ gift: gift?._id });
     openInvoice(
-      "https://t.me/invoice/jd231xxSd1",
-      // "https://t.me/CryptoTestnetBot/app?startapp=invoice-IVdry0FatMRV",
+      // "https://t.me/invoice/jd231xxSd1",
+      "https://t.me/CryptoTestnetBot/app?startapp=invoice-IVdry0FatMRV&mode=compact",
       "url"
     );
   });

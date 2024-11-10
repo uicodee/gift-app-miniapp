@@ -1,3 +1,7 @@
+import { GiftsOverview } from "@/pages/gifts-overview";
+import { LeaderboardOverview } from "@/pages/leaderboard-overview";
+import { ProfileOverview } from "@/pages/profile-overview";
+import { StoreOverview } from "@/pages/store-overview";
 import { lazy } from "react";
 
 const PageLayout = lazy(() =>
@@ -12,11 +16,11 @@ const BottomBarLayout = lazy(() =>
   }))
 );
 
-const Store = lazy(() =>
-  import("@/pages/store-overview").then((module) => ({
-    default: module.StoreOverview,
-  }))
-);
+// const Store = lazy(() =>
+//   import("@/pages/store-overview").then((module) => ({
+//     default: module.StoreOverview,
+//   }))
+// );
 
 const BuyGift = lazy(() =>
   import("@/pages/buy-gift-page").then((module) => ({
@@ -24,23 +28,23 @@ const BuyGift = lazy(() =>
   }))
 );
 
-const Gifts = lazy(() =>
-  import("@/pages/gifts-overview").then((module) => ({
-    default: module.GiftsOverview,
-  }))
-);
+// const Gifts = lazy(() =>
+//   import("@/pages/gifts-overview").then((module) => ({
+//     default: module.GiftsOverview,
+//   }))
+// );
 
-const Leaderboard = lazy(() =>
-  import("@/pages/leaderboard-overview").then((module) => ({
-    default: module.LeaderboardOverview,
-  }))
-);
+// const Leaderboard = lazy(() =>
+//   import("@/pages/leaderboard-overview").then((module) => ({
+//     default: module.LeaderboardOverview,
+//   }))
+// );
 
-const Profile = lazy(() =>
-  import("@/pages/profile-overview").then((module) => ({
-    default: module.ProfileOverview,
-  }))
-);
+// const Profile = lazy(() =>
+//   import("@/pages/profile-overview").then((module) => ({
+//     default: module.ProfileOverview,
+//   }))
+// );
 
 const RecentAction = lazy(() =>
   import("@/pages/recent-action-overview").then((module) => ({
@@ -84,31 +88,34 @@ export const paths = [
         element: <BuyGift />,
       },
       {
+        path: "profile/recent-action",
+        element: <RecentAction />,
+      },
+      {
         path: "",
         element: <BottomBarLayout />,
         children: [
           {
             index: true,
-            element: <Store />,
+            // element: <Store />,
+            element: <StoreOverview />,
           },
           {
             path: "gifts",
-            element: <Gifts />,
+            // element: <Gifts />,
+            element: <GiftsOverview />,
           },
           {
             path: "leaderboard",
-            element: <Leaderboard />,
+            // element: <Leaderboard />,
+            element: <LeaderboardOverview />,
           },
           {
             path: "profile",
             children: [
               {
                 index: true,
-                element: <Profile />,
-              },
-              {
-                path: "recent-action",
-                element: <RecentAction />,
+                element: <ProfileOverview />,
               },
             ],
           },

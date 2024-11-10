@@ -1,6 +1,6 @@
 export { GiftCard, LoadingGiftCard } from "./gift-card";
 export { DetailGiftCard, DetailGiftCardSkeleton } from "./detail-gift-card";
-export { MiniGiftCard } from "./mini-gift-card";
+export { MiniGiftCard, MiniGiftCardSkeleton } from "./mini-gift-card";
 export { LeaderCard } from "./leader-card";
 
 export { List } from "./list";
