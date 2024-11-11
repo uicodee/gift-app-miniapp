@@ -7,23 +7,12 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
 import { initDataRaw, mainButton } from "@telegram-apps/sdk-react";
-import Image from "@/assets/image.png";
-import { Modal, useViewGift } from "@/features/view-gift";
-
-const GiftsEmpty = () => {
-  return (
-    <Section className="flex flex-col justify-center items-center text-center bg-section rounded-xl py-8 gap-y-4">
-      <img src={Image} alt="Empty" className="size-25" />
-      <Typography variant="text">You don't have any gifts yet.</Typography>
-      <Typography variant="text" className="text-primary">
-        Open Store
-      </Typography>
-    </Section>
-  );
-};
+import { ViewGiftModal, useViewGift } from "@/features/view-gift";
+import { EmptyGifts } from "@/widgets/placeholders";
 
 export const GiftsOverview = () => {
   const setOpen = useViewGift((state) => state.setOpen);
+  const setGift = useViewGift((state) => state.setGift);
   const { data: user, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
@@ -32,11 +21,11 @@ export const GiftsOverview = () => {
       }),
   });
 
-  const gifts = user?.gifts ?? [];
+  const gifts = user?.gifts || [];
 
   return (
     <Section className="h-full">
-      <Modal />
+      <ViewGiftModal />
       <div className="flex flex-col pt-6 pb-7 items-center justify-center text-center gap-y-2">
         <Typography variant="title-lg">Send Gifts in Telegram</Typography>
         <Typography variant="text" className="text-label-secondary max-w-xxs">
@@ -58,6 +47,7 @@ export const GiftsOverview = () => {
               giftImageUrl={gift.imageUrl}
               onClick={() => {
                 setOpen(true);
+                setGift(gift);
                 mainButton.mount();
                 mainButton.setParams({
                   backgroundColor: "#007aff",
@@ -70,7 +60,11 @@ export const GiftsOverview = () => {
           ))}
         </div>
       ) : (
-        <GiftsEmpty />
+        <EmptyGifts
+          title="You don't have any gifts yet."
+          linkText="Open Store"
+          link="/"
+        />
       )}
     </Section>
   );

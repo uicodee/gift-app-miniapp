@@ -11,6 +11,7 @@ interface LeaderCardProps {
   gifts: number;
   place: number;
   me?: boolean;
+  isLast: boolean;
 }
 
 export const LeaderCard = ({
@@ -19,23 +20,21 @@ export const LeaderCard = ({
   gifts,
   place,
   me = false,
+  isLast,
 }: LeaderCardProps) => {
   return (
     <div
       className={cn(
-        "group px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3",
-        me &&
-          "sticky bottom-0 border-b-0 border-b-transparent border-t-0.3 border-t-separator z-20"
+        "px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3",
+        me && "sticky bottom-0 z-20 border-t-0.3 border-t-separator"
       )}
-      // className={`px-3 bg-bg-color flex items-center pt-2 w-full gap-x-3 ${
-      //   me && "sticky bottom-0 border-b-0 border-t-separator z-20"
-      // }`}
     >
       <Avatar path={avatar} fullName={fullName} />
       <div
         className={cn(
-          "group-last:border-b-0 flex justify-between items-center w-full  border-b-separator pb-2",
-          !me && "border-b-0.3"
+          "flex justify-between items-center w-full pb-2 ",
+          // !isFirst && "borde",
+          !isLast && "border-b-separator border-b-0.3"
         )}
       >
         <div>

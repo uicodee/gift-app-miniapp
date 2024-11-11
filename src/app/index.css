@@ -63,6 +63,7 @@
   --input: var(--secondary-bg-color);
   --placeholder: rgba(60, 60, 67, 0.6);
   --invert-bg: var(--secondary-bg-color);
+  --gray: rgba(227, 227, 232, 1);
 }
 
 .dark {
@@ -79,6 +80,7 @@
   --input: rgba(0, 0, 0, 0.5);
   --placeholder: var(--color-label-secondary);
   --invert-bg: var(--color-black);
+  --gray: var(--secondary-bg-color);
 }
 
 body {

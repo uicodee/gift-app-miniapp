@@ -1,2 +1,2 @@
 export { useViewGift } from "./model/store";
-export {Modal} from "./ui/modal"
+export { ViewGiftModal } from "./ui/modal";

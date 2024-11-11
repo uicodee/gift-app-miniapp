@@ -2,29 +2,24 @@ import { FC, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "@/shared/router";
 import { miniApp, swipeBehavior, viewport } from "@telegram-apps/sdk-react";
+import { useTheme } from "@/shared/hooks";
 
 export const App: FC = () => {
-  // const isDark = useSignal(themeParams.isDark);
-  const isDark = false;
+  const { theme } = useTheme();
 
   useEffect(() => {
-    if (isDark) {
+    if (theme === "dark") {
       miniApp.setHeaderColor("#1c1c1e");
-      document.body.classList.add("dark");
     } else {
       miniApp.setHeaderColor("#ffffff");
-      document.body.classList.remove("dark");
     }
-  }, [isDark]);
+  }, [theme]);
+
   useEffect(() => {
     swipeBehavior.mount();
     swipeBehavior.disableVertical();
-
     viewport?.expand();
-
-    // closingBehavior.mount();
-    // closingBehavior.enableConfirmation();
   }, []);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 };

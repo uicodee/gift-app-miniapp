@@ -28,6 +28,12 @@ const BuyGift = lazy(() =>
   }))
 );
 
+const UserProfile = lazy(() =>
+  import("@/pages/user-profile-overview").then((module) => ({
+    default: module.UserProfileOverview,
+  }))
+);
+
 // const Gifts = lazy(() =>
 //   import("@/pages/gifts-overview").then((module) => ({
 //     default: module.GiftsOverview,
@@ -116,6 +122,11 @@ export const paths = [
               {
                 index: true,
                 element: <ProfileOverview />,
+              },
+
+              {
+                path: ":userId",
+                element: <UserProfile />,
               },
             ],
           },
