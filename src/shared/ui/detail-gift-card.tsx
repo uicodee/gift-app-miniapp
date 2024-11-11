@@ -5,12 +5,20 @@ import { Badge } from "./badge";
 import TonBgIcon from "@/assets/ton-bg.svg?react";
 import { variant } from "./gift-card";
 import { cn } from "./utils";
+import { motion } from "framer-motion";
+import { useBuyGift } from "@/features/buy-gift";
+import { useCachedData } from "../hooks";
 
 interface DetailGiftCardProps {
   gift: Gift;
 }
 
 export const DetailGiftCard = ({ gift }: DetailGiftCardProps) => {
+  const animationData = useCachedData(gift.animationUrl, {
+    cacheName: "lottie-animations",
+  });
+  const layoutId = useBuyGift((state) => state.layoutId);
+
   return (
     <div className="pt-4 pb-0">
       <div
@@ -20,12 +28,18 @@ export const DetailGiftCard = ({ gift }: DetailGiftCardProps) => {
         )}
       >
         <div className="bg-pattern absolute inset-0 overflow-clip bg-auto rounded-2xl"></div>
-        <Lottie
-          play
-          loop={false}
-          path={gift?.animationUrl}
-          className="w-full z-20 relative"
-        />
+        <motion.div layoutId={layoutId as string}>
+          {animationData ? (
+            <Lottie
+              play
+              loop={false}
+              animationData={animationData}
+              className="w-full z-20 relative"
+            />
+          ) : (
+            <div>Loading...</div>
+          )}
+        </motion.div>
       </div>
       <div className="flex flex-col bg-bg-color py-3 gap-2">
         <div className="flex items-center gap-x-3">

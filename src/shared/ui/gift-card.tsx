@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "./utils";
 import { Typography } from "./typography";
@@ -8,6 +8,8 @@ import UsdtIcon from "@/assets/usdt.svg?react";
 import TonIcon from "@/assets/ton.svg?react";
 import EthIcon from "@/assets/eth.svg?react";
 import { useCachedData, useFormattedNumbers } from "../hooks";
+import { useBuyGift } from "@/features/buy-gift";
+import { motion } from "framer-motion";
 
 export type Currencies = "USDT" | "TON" | "ETH";
 
@@ -51,6 +53,8 @@ export const GiftCard = React.memo(
     currency,
     animationUrl,
   }: GiftCardProps) => {
+    const navigate = useNavigate();
+    const setLayoutId = useBuyGift((state) => state.setLayoutId);
     const animationData = useCachedData(animationUrl, {
       cacheName: "lottie-animations",
     });
@@ -60,12 +64,16 @@ export const GiftCard = React.memo(
     ]);
 
     return (
-      <Link
-        to={`buy/${id}`}
+      <motion.div
+        // to={`buy/${id}`}
         className={cn(
           "flex relative flex-col justify-between w-full rounded-xl py-2 px-3",
           cardBgVariants({ variant })
         )}
+        onClick={() => {
+          setLayoutId(id);
+          navigate(`buy/${id}`);
+        }}
       >
         <div className="bg-pattern absolute inset-0 overflow-clip bg-auto rounded-2xl"></div>
         <span className="text-pre-xs self-end leading-4.5 opacity-50 mb-2 text-accent-text-color">
@@ -73,12 +81,19 @@ export const GiftCard = React.memo(
         </span>
         <div className="flex flex-col items-center justify-center gap-1">
           {animationData ? (
-            <Lottie
-              play
-              loop={false}
-              animationData={animationData}
-              className="size-32 z-10"
-            />
+            <motion.div
+              layoutId={id}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Lottie
+                play
+                loop
+                animationData={animationData}
+                className="size-32 z-10"
+              />
+            </motion.div>
           ) : (
             <div className="size-32"></div>
           )}
@@ -104,7 +119,7 @@ export const GiftCard = React.memo(
             </button>
           )}
         </div>
-      </Link>
+      </motion.div>
     );
   }
 );

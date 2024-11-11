@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
 import { initDataUser } from "@telegram-apps/sdk-react";
 import { Link } from "react-router-dom";
+import { AnimatedWrapper } from "@/widgets/animation";
 // import Search from "@/assets/search.svg?react";
 
 export const LeaderboardOverview = () => {
@@ -11,7 +12,7 @@ export const LeaderboardOverview = () => {
     queryFn: () => getUsers().usersControllerFindAll({ orderBy: "giftCount" }),
   });
   return (
-    <>
+    <AnimatedWrapper>
       <div className="sticky top-0 w-full pt-2.5 pb-2 bg-bg-color border-b-0.3 border-separator z-30">
         <Section className="relative">
           {/* <Search className="size-5 absolute" /> */}
@@ -40,6 +41,6 @@ export const LeaderboardOverview = () => {
           ))}
         </div>
       </div>
-    </>
+    </AnimatedWrapper>
   );
 };

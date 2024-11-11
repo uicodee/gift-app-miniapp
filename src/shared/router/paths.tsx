@@ -1,26 +1,27 @@
-import { GiftsOverview } from "@/pages/gifts-overview";
-import { LeaderboardOverview } from "@/pages/leaderboard-overview";
-import { ProfileOverview } from "@/pages/profile-overview";
-import { StoreOverview } from "@/pages/store-overview";
+// import { GiftsOverview } from "@/pages/gifts-overview";
+// import { LeaderboardOverview } from "@/pages/leaderboard-overview";
+// import { ProfileOverview } from "@/pages/profile-overview";
+// import { StoreOverview } from "@/pages/store-overview";
 import { lazy } from "react";
+import { BottomBarLayout, PageLayout } from "../layouts";
 
-const PageLayout = lazy(() =>
-  import("@/shared/layouts").then((module) => ({
-    default: module.PageLayout,
-  }))
-);
-
-const BottomBarLayout = lazy(() =>
-  import("@/shared/layouts").then((module) => ({
-    default: module.BottomBarLayout,
-  }))
-);
-
-// const Store = lazy(() =>
-//   import("@/pages/store-overview").then((module) => ({
-//     default: module.StoreOverview,
+// const PageLayout = lazy(() =>
+//   import("@/shared/layouts").then((module) => ({
+//     default: module.PageLayout,
 //   }))
 // );
+
+// const BottomBarLayout = lazy(() =>
+//   import("@/shared/layouts").then((module) => ({
+//     default: module.BottomBarLayout,
+//   }))
+// );
+
+const Store = lazy(() =>
+  import("@/pages/store-overview").then((module) => ({
+    default: module.StoreOverview,
+  }))
+);
 
 const BuyGift = lazy(() =>
   import("@/pages/buy-gift-page").then((module) => ({
@@ -34,23 +35,23 @@ const UserProfile = lazy(() =>
   }))
 );
 
-// const Gifts = lazy(() =>
-//   import("@/pages/gifts-overview").then((module) => ({
-//     default: module.GiftsOverview,
-//   }))
-// );
+const Gifts = lazy(() =>
+  import("@/pages/gifts-overview").then((module) => ({
+    default: module.GiftsOverview,
+  }))
+);
 
-// const Leaderboard = lazy(() =>
-//   import("@/pages/leaderboard-overview").then((module) => ({
-//     default: module.LeaderboardOverview,
-//   }))
-// );
+const Leaderboard = lazy(() =>
+  import("@/pages/leaderboard-overview").then((module) => ({
+    default: module.LeaderboardOverview,
+  }))
+);
 
-// const Profile = lazy(() =>
-//   import("@/pages/profile-overview").then((module) => ({
-//     default: module.ProfileOverview,
-//   }))
-// );
+const Profile = lazy(() =>
+  import("@/pages/profile-overview").then((module) => ({
+    default: module.ProfileOverview,
+  }))
+);
 
 const RecentAction = lazy(() =>
   import("@/pages/recent-action-overview").then((module) => ({
@@ -103,25 +104,26 @@ export const paths = [
         children: [
           {
             index: true,
-            // element: <Store />,
-            element: <StoreOverview />,
+            element: <Store />,
+            // element: <StoreOverview />,
           },
           {
             path: "gifts",
-            // element: <Gifts />,
-            element: <GiftsOverview />,
+            element: <Gifts />,
+            // element: <GiftsOverview />,
           },
           {
             path: "leaderboard",
-            // element: <Leaderboard />,
-            element: <LeaderboardOverview />,
+            element: <Leaderboard />,
+            // element: <LeaderboardOverview />,
           },
           {
             path: "profile",
             children: [
               {
                 index: true,
-                element: <ProfileOverview />,
+                element: <Profile />,
+                // element: <ProfileOverview />,
               },
 
               {

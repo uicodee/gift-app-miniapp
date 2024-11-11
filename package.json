@@ -10,7 +10,7 @@
     "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "api:download": "wget https://api.gift-app.tw1.su/docs -O ./src/shared/api/schema.json",
+    "api:download": "wget http://127.0.0.1:3000/docs -O ./src/shared/api/schema.json",
     "api:generate": "orval"
   },
   "dependencies": {

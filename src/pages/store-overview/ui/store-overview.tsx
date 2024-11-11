@@ -8,6 +8,7 @@ import {
   LoadingGiftCard,
 } from "@/shared/ui/gift-card";
 import { initDataRaw } from "@telegram-apps/sdk-react";
+import { motion } from "framer-motion";
 
 export const StoreOverview = () => {
   const { data: gifts, isLoading } = useQuery({
@@ -19,7 +20,7 @@ export const StoreOverview = () => {
   });
 
   return (
-    <>
+    <motion.div>
       <Section className="flex flex-col pt-6 pb-4 items-center justify-center">
         <Gift className="w-11 h-12 mb-4 text-accent-blue" />
         <Typography variant="title-lg" className="mb-2">
@@ -50,6 +51,6 @@ export const StoreOverview = () => {
               />
             ))}
       </Section>
-    </>
+    </motion.div>
   );
 };

@@ -13,6 +13,7 @@ import { getGifts } from "@/shared/api/generated/gifts/gifts";
 import { useParams } from "react-router-dom";
 import { initDataRaw, openInvoice } from "@telegram-apps/sdk-react";
 import { BuyGiftDto, Gift } from "@/shared/api/model";
+import { AnimatePresence } from "framer-motion";
 
 export const BuyGift = () => {
   const { giftId } = useParams<{ giftId: string }>();
@@ -40,45 +41,19 @@ export const BuyGift = () => {
     );
   });
   useBackBtn();
-
-  // const mutation = useMutation({
-  //   mutationFn: () => {
-  //     let data = JSON.stringify({
-  //       asset: "USDT",
-  //       amount: "10",
-  //     });
-
-  //     let config = {
-  //       method: "post",
-  //       maxBodyLength: Infinity,
-  //       url: "https://testnet-pay.crypt.bot/api/createInvoice",
-  //       headers: {
-  //         "Crypto-Pay-API-Token": "19418:AAnoxbznYKMyfuqz4o0CKRJVouAKRB65ZH9",
-  //         "Content-Type": "application/json",
-  //       },
-  //       data: data,
-  //     };
-
-  //     axios
-  //       .request(config)
-  //       .then((response) => {
-  //         console.log(JSON.stringify(response.data));
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
-  // });
-  // if (isLoading) {
-  //   return null;
-  // }
   return (
     <List>
       <Section>
         {isLoading ? (
           <DetailGiftCardSkeleton />
         ) : (
-          <DetailGiftCard gift={gift as Gift} />
+          <AnimatePresence>
+            {/* <motion.div layoutId={layoutId as string}>
+              <motion.h5>subtitle</motion.h5>
+              <motion.h2>title</motion.h2>
+            </motion.div> */}
+            <DetailGiftCard gift={gift as Gift} />
+          </AnimatePresence>
         )}
       </Section>
       <Section>
