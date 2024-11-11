@@ -1,12 +1,6 @@
 import { useBackBtn, useMainBtn } from "@/shared/hooks";
-import {
-  Cell,
-  DetailGiftCard,
-  DetailGiftCardSkeleton,
-  List,
-  Section,
-  Typography,
-} from "@/shared/ui";
+import { Cell, List, Section, Typography } from "@/shared/ui";
+import { DetailGiftCard, DetailGiftCardSkeleton } from "@/widgets/gift-card";
 import Avatar from "@/assets/avatar.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getGifts } from "@/shared/api/generated/gifts/gifts";

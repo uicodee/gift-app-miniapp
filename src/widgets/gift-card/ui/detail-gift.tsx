@@ -1,13 +1,12 @@
 import Lottie from "react-lottie-player";
-import { Gift } from "../api/model";
-import { Typography } from "./typography";
-import { Badge } from "./badge";
 import TonBgIcon from "@/assets/ton-bg.svg?react";
-import { variant } from "./gift-card";
-import { cn } from "./utils";
 import { motion } from "framer-motion";
 import { useBuyGift } from "@/features/buy-gift";
-import { useCachedData } from "../hooks";
+import { Gift } from "@/shared/api/model";
+import { useCachedData } from "@/shared/hooks";
+import { cn } from "@/shared/ui/utils";
+import { Badge, Typography } from "@/shared/ui";
+import { variant } from "@/shared/data/constants";
 
 interface DetailGiftCardProps {
   gift: Gift;

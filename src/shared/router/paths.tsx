@@ -1,21 +1,5 @@
-// import { GiftsOverview } from "@/pages/gifts-overview";
-// import { LeaderboardOverview } from "@/pages/leaderboard-overview";
-// import { ProfileOverview } from "@/pages/profile-overview";
-// import { StoreOverview } from "@/pages/store-overview";
 import { lazy } from "react";
 import { BottomBarLayout, PageLayout } from "../layouts";
-
-// const PageLayout = lazy(() =>
-//   import("@/shared/layouts").then((module) => ({
-//     default: module.PageLayout,
-//   }))
-// );
-
-// const BottomBarLayout = lazy(() =>
-//   import("@/shared/layouts").then((module) => ({
-//     default: module.BottomBarLayout,
-//   }))
-// );
 
 const Store = lazy(() =>
   import("@/pages/store-overview").then((module) => ({
@@ -59,32 +43,6 @@ const RecentAction = lazy(() =>
   }))
 );
 
-// const pageVariants = {
-//   initial: { opacity: 0 },
-//   enter: { opacity: 1 },
-//   exit: { opacity: 0 },
-// };
-
-// const pageTransition = {
-//   duration: 0.5,
-// };
-
-// const AnimatedRoute = ({ children }: { children: ReactNode }) => {
-//   return (
-//     <AnimatePresence>
-//       <motion.div
-//         initial="initial"
-//         animate="enter"
-//         exit="exit"
-//         variants={pageVariants}
-//         transition={{ duration: 0.5 }}
-//       >
-//         {children}
-//       </motion.div>
-//     </AnimatePresence>
-//   );
-// };
-
 export const paths = [
   {
     path: "",
@@ -105,17 +63,14 @@ export const paths = [
           {
             index: true,
             element: <Store />,
-            // element: <StoreOverview />,
           },
           {
             path: "gifts",
             element: <Gifts />,
-            // element: <GiftsOverview />,
           },
           {
             path: "leaderboard",
             element: <Leaderboard />,
-            // element: <LeaderboardOverview />,
           },
           {
             path: "profile",
@@ -123,7 +78,6 @@ export const paths = [
               {
                 index: true,
                 element: <Profile />,
-                // element: <ProfileOverview />,
               },
 
               {

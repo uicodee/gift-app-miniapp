@@ -1,4 +1,5 @@
 import { useFormattedNumbers } from "@/shared/hooks";
+import { motion } from "framer-motion";
 import { HTMLAttributes } from "react";
 
 interface ProfileGiftProps extends HTMLAttributes<HTMLDivElement> {
@@ -34,7 +35,14 @@ export const ProfileGift = ({
           </span>
         </div>
         <div className="flex justify-center mt-1">
-          <img src={imageUrl} alt={title} className="size-20" />
+          <motion.img
+            src={imageUrl}
+            alt={title}
+            className="size-20"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, type: "smooth" }}
+          />
         </div>
       </div>
       <div className="mt-0.5 mb-1 px-1.5">

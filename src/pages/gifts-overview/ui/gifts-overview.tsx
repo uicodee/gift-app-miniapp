@@ -1,15 +1,11 @@
-import {
-  Typography,
-  MiniGiftCard,
-  Section,
-  MiniGiftCardSkeleton,
-} from "@/shared/ui";
+import { Typography, Section } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
 import { initDataRaw, mainButton } from "@telegram-apps/sdk-react";
 import { ViewGiftModal, useViewGift } from "@/features/view-gift";
 import { EmptyGifts } from "@/widgets/placeholders";
 import { AnimatedWrapper } from "@/widgets/animation";
+import { MiniGiftCard, MiniGiftCardSkeleton } from "@/widgets/gift-card";
 
 export const GiftsOverview = () => {
   const setOpen = useViewGift((state) => state.setOpen);

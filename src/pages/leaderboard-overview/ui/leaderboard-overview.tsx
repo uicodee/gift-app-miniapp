@@ -1,9 +1,10 @@
-import { LeaderCard, Section } from "@/shared/ui";
+import { Section } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
 import { initDataUser } from "@telegram-apps/sdk-react";
 import { Link } from "react-router-dom";
 import { AnimatedWrapper } from "@/widgets/animation";
+import { LeaderCard } from "@/widgets/leader";
 // import Search from "@/assets/search.svg?react";
 
 export const LeaderboardOverview = () => {

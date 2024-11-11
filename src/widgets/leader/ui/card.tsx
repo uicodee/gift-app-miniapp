@@ -2,8 +2,8 @@ import Gift from "@/assets/gift-fill.svg?react";
 import Gold from "@/assets/gold.png";
 import Silver from "@/assets/silver.png";
 import Bronze from "@/assets/bronze.png";
-import { Avatar } from "./avatar";
-import { cn } from "./utils";
+import { cn } from "@/shared/ui/utils";
+import { Avatar } from "@/shared/ui/avatar";
 
 interface LeaderCardProps {
   avatar?: string | null;
@@ -33,7 +33,6 @@ export const LeaderCard = ({
       <div
         className={cn(
           "flex justify-between items-center w-full pb-2 ",
-          // !isFirst && "borde",
           !isLast && "border-b-separator border-b-0.3"
         )}
       >

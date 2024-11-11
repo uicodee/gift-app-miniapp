@@ -1,12 +1,8 @@
 import Gift from "@/assets/gift-fill.svg?react";
-import { GiftCard, Section, Typography } from "@/shared/ui";
+import { Section, Typography } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getGifts } from "@/shared/api/generated/gifts/gifts";
-import {
-  CardVariants,
-  Currencies,
-  LoadingGiftCard,
-} from "@/shared/ui/gift-card";
+import { GiftCard, LoadingGiftCard } from "@/widgets/gift-card/ui/gift-card";
 import { initDataRaw } from "@telegram-apps/sdk-react";
 import { motion } from "framer-motion";
 
@@ -45,8 +41,8 @@ export const StoreOverview = () => {
                 ofEdition={gift.totalIssued}
                 title={gift.name}
                 price={gift.price}
-                variant={gift.variant as CardVariants["variant"]}
-                currency={gift.currency as Currencies}
+                variant={gift.variant}
+                currency={gift.currency}
                 animationUrl={gift.animationUrl}
               />
             ))}

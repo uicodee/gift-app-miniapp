@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { PropsWithChildren } from "react";
 
-export const AnimatedWrapper = ({ children }: PropsWithChildren) => {
+export const AnimatedWrapper = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
   return (
     <motion.div
       initial={{
@@ -17,6 +20,7 @@ export const AnimatedWrapper = ({ children }: PropsWithChildren) => {
         WebkitBackdropFilter: "blur(0px)",
       }}
       transition={{ duration: 0.2 }}
+      className={className}
     >
       {children}
     </motion.div>

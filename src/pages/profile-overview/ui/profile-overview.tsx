@@ -1,10 +1,10 @@
-import { MiniGiftCardSkeleton, Section, Typography } from "@/shared/ui";
+import { Section, Typography } from "@/shared/ui";
 import UserAvatar from "@/assets/Avatar - People - Mark.png";
 import { Link } from "react-router-dom";
 import Recent from "@/assets/recent.svg?react";
 
 import { LanguageToggle, ThemeToggle } from "@/widgets/toggle";
-import { ProfileGift } from "@/widgets/card";
+import { MiniGiftCardSkeleton, ProfileGift } from "@/widgets/gift-card";
 import { ProfileInfo } from "@/widgets/profile-info";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";

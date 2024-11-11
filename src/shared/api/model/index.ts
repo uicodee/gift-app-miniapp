@@ -11,6 +11,8 @@ export * from './createActionDto';
 export * from './createTransactionDto';
 export * from './createTransactionDtoTransactionType';
 export * from './gift';
+export * from './giftCurrency';
+export * from './invoiceCreatedDto';
 export * from './user';
 export * from './usersControllerFindAllOrderBy';
 export * from './usersControllerFindAllParams';

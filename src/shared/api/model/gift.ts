@@ -5,11 +5,12 @@
  * Crypto Gift App contest
  * OpenAPI spec version: 1.0
  */
+import type { GiftCurrency } from './giftCurrency';
 
 export interface Gift {
   animationUrl: string;
   availability: number;
-  currency: string;
+  currency: GiftCurrency;
   description?: string;
   imageUrl: string;
   name: string;

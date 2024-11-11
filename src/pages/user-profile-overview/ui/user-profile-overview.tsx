@@ -1,12 +1,12 @@
 import { useBackBtn } from "@/shared/hooks";
-import { ProfileGift } from "@/widgets/card";
+import { MiniGiftCardSkeleton, ProfileGift } from "@/widgets/gift-card";
 import { ProfileInfo } from "@/widgets/profile-info";
 import { useParams } from "react-router-dom";
 import UserAvatar from "@/assets/Avatar - People - Mark.png";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
-import { MiniGiftCardSkeleton } from "@/shared/ui";
 import { EmptyGifts } from "@/widgets/placeholders";
+import { AnimatedWrapper } from "@/widgets/animation";
 
 export const UserProfileOverview = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -19,7 +19,7 @@ export const UserProfileOverview = () => {
 
   useBackBtn();
   return (
-    <div className="w-full flex flex-col justify-center text-center py-2 px-3">
+    <AnimatedWrapper className="w-full flex flex-col justify-center text-center py-2 px-3">
       <div>
         <ProfileInfo
           avatarPath={user?.profilePhoto as string}
@@ -52,6 +52,6 @@ export const UserProfileOverview = () => {
           <EmptyGifts title="This user don't have any gifts yet." />
         )}
       </div>
-    </div>
+    </AnimatedWrapper>
   );
 };
