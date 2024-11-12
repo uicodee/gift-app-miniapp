@@ -6,9 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 import type {
-  BuyGiftDto,
   Gift,
-  InvoiceCreatedDto
+  SendGiftDto
 } from '../../model'
 import { createInstance } from '../../http/index';
 import type { BodyType } from '../../http/index';
@@ -18,23 +17,13 @@ type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 
 
   export const getGifts = () => {
-const giftsControllerBuy = (
-    buyGiftDto: BodyType<BuyGiftDto>,
- options?: SecondParameter<typeof createInstance>,) => {
-      return createInstance<InvoiceCreatedDto>(
-      {url: `/gifts/buy`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: buyGiftDto
-    },
-      options);
-    }
-  const giftsControllerSend = (
-    buyGiftDto: BodyType<BuyGiftDto>,
+const giftsControllerSend = (
+    sendGiftDto: BodyType<SendGiftDto>,
  options?: SecondParameter<typeof createInstance>,) => {
       return createInstance<Gift>(
       {url: `/gifts/send`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: buyGiftDto
+      data: sendGiftDto
     },
       options);
     }
@@ -54,8 +43,7 @@ const giftsControllerBuy = (
     },
       options);
     }
-  return {giftsControllerBuy,giftsControllerSend,giftsControllerFindAll,giftsControllerFindOne}};
-export type GiftsControllerBuyResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getGifts>['giftsControllerBuy']>>>
+  return {giftsControllerSend,giftsControllerFindAll,giftsControllerFindOne}};
 export type GiftsControllerSendResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getGifts>['giftsControllerSend']>>>
 export type GiftsControllerFindAllResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getGifts>['giftsControllerFindAll']>>>
 export type GiftsControllerFindOneResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getGifts>['giftsControllerFindOne']>>>
