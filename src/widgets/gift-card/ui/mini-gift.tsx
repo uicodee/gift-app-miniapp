@@ -27,7 +27,7 @@ export const MiniGiftCard = ({
       </motion.div>
 
       <button
-        className="rounded-full bg-accent-blue text-white font-semibold text-pre-xs leading-4.5 py-1.5 px-6.25 mb-1"
+        className="rounded-full bg-accent-blue text-white font-semibold text-pre-xs leading-4.5 py-1.5 px-5 mb-1"
         onClick={onClick}
       >
         {t("common.send")}

@@ -12,6 +12,7 @@ export interface User {
   gifts?: Gift[];
   language?: string;
   profilePhoto?: string;
+  purchasedGifts?: Gift[];
   telegramId: number;
   username?: string;
 }

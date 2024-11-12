@@ -5,20 +5,25 @@
  * Crypto Gift App contest
  * OpenAPI spec version: 1.0
  */
+import type {
+  CreateInvoiceDto
+} from '../../model'
 import { createInstance } from '../../http/index';
+import type { BodyType } from '../../http/index';
 
 
 type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 
 
-  export const getTransactions = () => {
-const transactionsControllerCreate = (
-    
+  export const getDefault = () => {
+const invoiceControllerCreate = (
+    createInvoiceDto: BodyType<CreateInvoiceDto>,
  options?: SecondParameter<typeof createInstance>,) => {
       return createInstance<void>(
-      {url: `/transactions`, method: 'POST'
+      {url: `/invoice`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createInvoiceDto
     },
       options);
     }
-  return {transactionsControllerCreate}};
-export type TransactionsControllerCreateResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getTransactions>['transactionsControllerCreate']>>>
+  return {}};

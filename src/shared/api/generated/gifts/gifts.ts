@@ -7,7 +7,8 @@
  */
 import type {
   BuyGiftDto,
-  Gift
+  Gift,
+  InvoiceCreatedDto
 } from '../../model'
 import { createInstance } from '../../http/index';
 import type { BodyType } from '../../http/index';
@@ -20,7 +21,7 @@ type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 const giftsControllerBuy = (
     buyGiftDto: BodyType<BuyGiftDto>,
  options?: SecondParameter<typeof createInstance>,) => {
-      return createInstance<Gift>(
+      return createInstance<InvoiceCreatedDto>(
       {url: `/gifts/buy`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: buyGiftDto

@@ -20,7 +20,7 @@ export const GiftsOverview = () => {
       }),
   });
 
-  const gifts = user?.gifts || [];
+  const gifts = user?.purchasedGifts || [];
 
   return (
     <AnimatedWrapper>

@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type {
+  Action,
   CreateActionDto
 } from '../../model'
 import { createInstance } from '../../http/index';
@@ -26,11 +27,11 @@ const actionsControllerCreate = (
     },
       options);
     }
-  const actionsControllerFindAll = (
-    
+  const actionsControllerFindGiftAll = (
+    giftId: string,
  options?: SecondParameter<typeof createInstance>,) => {
-      return createInstance<void>(
-      {url: `/actions`, method: 'GET'
+      return createInstance<Action[]>(
+      {url: `/actions/${giftId}`, method: 'GET'
     },
       options);
     }
@@ -42,7 +43,7 @@ const actionsControllerCreate = (
     },
       options);
     }
-  return {actionsControllerCreate,actionsControllerFindAll,actionsControllerFindOne}};
+  return {actionsControllerCreate,actionsControllerFindGiftAll,actionsControllerFindOne}};
 export type ActionsControllerCreateResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getActions>['actionsControllerCreate']>>>
-export type ActionsControllerFindAllResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getActions>['actionsControllerFindAll']>>>
+export type ActionsControllerFindGiftAllResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getActions>['actionsControllerFindGiftAll']>>>
 export type ActionsControllerFindOneResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getActions>['actionsControllerFindOne']>>>
