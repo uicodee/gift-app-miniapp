@@ -1,7 +1,40 @@
 {
+  "common": {
+    "of": "of",
+    "send": "Send",
+    "openStore": "Open Store",
+    "search": "Searcj",
+    "you": "You",
+    "gifts": "gifts",
+    "buy": "Buy Gift",
+    "giftSend": "Send Gift",
+    "bought": "bought a gift",
+    "giftSended": "sent",
+    "receive": "Received",
+    "giftReceived": "gift received"
+  },
+  "messages": {
+    "emptyGifts": "You don't have any gifts yet."
+  },
+  "tabs": {
+    "store": "Store",
+    "gifts": "Gifts",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile"
+  },
   "pages": {
     "store": {
-      "buyAndSend": "Buy and Send Gifts"
+      "title": "Buy and Send Gifts",
+      "description": "Unique gifts for everyone by Crypto Pay.",
+      "soldOut": "Sold Out"
+    },
+    "gifts": {
+      "title": "Send Gifts in Telegram",
+      "description": "Send gifts to users that can be stored in their app profile."
+    },
+    "profile": {
+      "recentActions": "Recent Actions",
+      "giftReceived": "gifts received"
     }
   }
 }
