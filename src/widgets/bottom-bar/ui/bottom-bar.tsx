@@ -9,15 +9,9 @@ import Lottie from "react-lottie-player";
 import { AnimationItem } from "lottie-web";
 import { hapticFeedback } from "@telegram-apps/sdk-react";
 import { useCachedData } from "@/shared/hooks";
+import { useTranslation } from "react-i18next";
 
 type IconType = "Store" | "Gifts" | "Leaderboard" | "Profile";
-
-const barItems = [
-  { title: "Store", href: "/" },
-  { title: "Gifts", href: "/gifts" },
-  { title: "Leaderboard", href: "/leaderboard" },
-  { title: "Profile", href: "/profile" },
-];
 
 const animations: Record<IconType, string> = {
   Store:
@@ -31,6 +25,17 @@ const animations: Record<IconType, string> = {
 };
 
 export const BottomBar: React.FC = () => {
+  const { t } = useTranslation();
+  const barItems = [
+    { title: "Store", href: "/", label: t("tabs.store") },
+    { title: "Gifts", href: "/gifts", label: t("tabs.gifts") },
+    {
+      title: "Leaderboard",
+      href: "/leaderboard",
+      label: t("tabs.leaderboard"),
+    },
+    { title: "Profile", href: "/profile", label: t("tabs.profile") },
+  ];
   const location = useLocation();
   const lottieRefs = useRef<MutableRefObject<AnimationItem | null>[]>([]);
 
@@ -115,7 +120,7 @@ export const BottomBar: React.FC = () => {
                   isActive ? "text-accent-blue" : "text-label-tabbar"
                 )}
               >
-                {item.title}
+                {item.label}
               </span>
             </Link>
           );

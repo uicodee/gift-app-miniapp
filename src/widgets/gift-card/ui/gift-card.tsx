@@ -12,6 +12,7 @@ import { useBuyGift } from "@/features/buy-gift";
 import { motion } from "framer-motion";
 import { variant } from "@/shared/data/constants";
 import { GiftCurrency } from "@/shared/api/model";
+import { useTranslation } from "react-i18next";
 
 const cardBgVariants = cva("bg-gradient-to-b", {
   variants: {
@@ -46,6 +47,8 @@ export const GiftCard = memo(
     currency,
     animationUrl,
   }: GiftCardProps) => {
+    const { t } = useTranslation();
+
     const soldOut = edition === ofEdition;
     const navigate = useNavigate();
     const setLayoutId = useBuyGift((state) => state.setLayoutId);
@@ -66,7 +69,7 @@ export const GiftCard = memo(
       >
         <div className="bg-pattern absolute inset-0 overflow-clip bg-auto rounded-2xl"></div>
         <span className="text-pre-xs self-end leading-4.5 opacity-50 mb-2 text-accent-text-color">
-          {formattedEdition} of {formattedOfEdition}
+          {formattedEdition} {t("common.of")} {formattedOfEdition}
         </span>
         <div className="flex flex-col items-center justify-center gap-1">
           {animationData ? (
@@ -75,6 +78,10 @@ export const GiftCard = memo(
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
+              exit={{
+                backdropFilter: "blur(0px)",
+                WebkitBackdropFilter: "blur(0px)",
+              }}
             >
               <Lottie
                 play
@@ -92,7 +99,7 @@ export const GiftCard = memo(
           {soldOut ? (
             <button className="flex w-fit items-center justify-center mb-2 px-4 rounded-full bg-label-secondary-10 bg-opacity-10 backdrop-blur-half text-white mt-3 text-pre-xs leading-4.5 font-semibold">
               <span className="flex items-center justify-center py-1.5 text-label-secondary">
-                Sold Out
+                {t("pages.store.soldOut")}
               </span>
             </button>
           ) : (

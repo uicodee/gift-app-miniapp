@@ -15,8 +15,11 @@ import {
   ViewProfileGiftModal,
 } from "@/features/view-profile-gift";
 import { AnimatedWrapper } from "@/widgets/animation";
+import { useTranslation } from "react-i18next";
 
 export const ProfileOverview = () => {
+  const { t } = useTranslation();
+
   const { data: user, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
@@ -48,7 +51,7 @@ export const ProfileOverview = () => {
             >
               <Recent />
               <Typography variant="text" className="text-primary">
-                Recent Actions ›
+                {t("pages.profile.recentActions")} ›
               </Typography>
             </Link>
           </div>

@@ -6,8 +6,10 @@ import { ViewGiftModal, useViewGift } from "@/features/view-gift";
 import { EmptyGifts } from "@/widgets/placeholders";
 import { AnimatedWrapper } from "@/widgets/animation";
 import { MiniGiftCard, MiniGiftCardSkeleton } from "@/widgets/gift-card";
+import { useTranslation } from "react-i18next";
 
 export const GiftsOverview = () => {
+  const { t } = useTranslation();
   const setOpen = useViewGift((state) => state.setOpen);
   const setGift = useViewGift((state) => state.setGift);
   const { data: user, isLoading } = useQuery({
@@ -25,9 +27,9 @@ export const GiftsOverview = () => {
       <Section className="h-full">
         <ViewGiftModal />
         <div className="flex flex-col pt-6 pb-7 items-center justify-center text-center gap-y-2">
-          <Typography variant="title-lg">Send Gifts in Telegram</Typography>
-          <Typography variant="text" className="text-label-secondary max-w-xxs">
-            Send gifts to users that can be stored in their app profile.
+          <Typography variant="title-lg">{t("pages.gifts.title")}</Typography>
+          <Typography variant="text" className="text-label-secondary max-w-xs">
+            {t("pages.gifts.description")}
           </Typography>
         </div>
         {isLoading ? (
@@ -59,8 +61,9 @@ export const GiftsOverview = () => {
           </div>
         ) : (
           <EmptyGifts
-            title="You don't have any gifts yet."
-            linkText="Open Store"
+            // title="You don't have any gifts yet."
+            title={t("messages.emptyGifts")}
+            linkText={t("common.openStore")}
             link="/"
           />
         )}

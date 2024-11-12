@@ -7,7 +7,6 @@ import { getGifts } from "@/shared/api/generated/gifts/gifts";
 import { useParams } from "react-router-dom";
 import { initDataRaw, openInvoice } from "@telegram-apps/sdk-react";
 import { BuyGiftDto, Gift } from "@/shared/api/model";
-import { AnimatePresence } from "framer-motion";
 
 export const BuyGift = () => {
   const { giftId } = useParams<{ giftId: string }>();
@@ -41,13 +40,7 @@ export const BuyGift = () => {
         {isLoading ? (
           <DetailGiftCardSkeleton />
         ) : (
-          <AnimatePresence>
-            {/* <motion.div layoutId={layoutId as string}>
-              <motion.h5>subtitle</motion.h5>
-              <motion.h2>title</motion.h2>
-            </motion.div> */}
-            <DetailGiftCard gift={gift as Gift} />
-          </AnimatePresence>
+          <DetailGiftCard gift={gift as Gift} />
         )}
       </Section>
       <Section>

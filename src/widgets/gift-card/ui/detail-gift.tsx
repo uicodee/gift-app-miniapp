@@ -1,18 +1,20 @@
 import Lottie from "react-lottie-player";
 import TonBgIcon from "@/assets/ton-bg.svg?react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useBuyGift } from "@/features/buy-gift";
 import { Gift } from "@/shared/api/model";
 import { useCachedData } from "@/shared/hooks";
 import { cn } from "@/shared/ui/utils";
 import { Badge, Typography } from "@/shared/ui";
 import { variant } from "@/shared/data/constants";
+import { useTranslation } from "react-i18next";
 
 interface DetailGiftCardProps {
   gift: Gift;
 }
 
 export const DetailGiftCard = ({ gift }: DetailGiftCardProps) => {
+  const { t } = useTranslation();
   const animationData = useCachedData(gift.animationUrl, {
     cacheName: "lottie-animations",
   });
@@ -27,24 +29,26 @@ export const DetailGiftCard = ({ gift }: DetailGiftCardProps) => {
         )}
       >
         <div className="bg-pattern absolute inset-0 overflow-clip bg-auto rounded-2xl"></div>
-        <motion.div layoutId={layoutId as string}>
-          {animationData ? (
-            <Lottie
-              play
-              loop={false}
-              animationData={animationData}
-              className="w-full z-20 relative"
-            />
-          ) : (
-            <div>Loading...</div>
-          )}
-        </motion.div>
+        <AnimatePresence>
+          <motion.div layoutId={layoutId as string}>
+            {animationData ? (
+              <Lottie
+                play
+                loop={false}
+                animationData={animationData}
+                className="w-full z-20 relative"
+              />
+            ) : (
+              <div className="w-full h-20 relative"></div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
       <div className="flex flex-col bg-bg-color py-3 gap-2">
         <div className="flex items-center gap-x-3">
           <Typography variant="title-lg">{gift?.name}</Typography>
           <Badge className="text-accent-blue bg-accent-blue-12">
-            {gift?.availability} of {gift?.totalIssued}
+            {gift?.availability} {t("common.of")} {gift?.totalIssued}
           </Badge>
         </div>
         <Typography variant="text" className="text-label-secondary">

@@ -1,5 +1,6 @@
 import { Typography } from "@/shared/ui";
 import { Avatar } from "@/shared/ui/avatar";
+import { useTranslation } from "react-i18next";
 
 interface ProfileInfoProps {
   avatarPath: string | null;
@@ -14,6 +15,7 @@ export const ProfileInfo = ({
   fullName,
   giftCount,
 }: ProfileInfoProps) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex flex-col relative items-center mb-3">
@@ -28,7 +30,7 @@ export const ProfileInfo = ({
         {fullName}
       </Typography>
       <Typography variant="text" className="text-label-secondary">
-        {giftCount} gifts received
+        {giftCount} {t("pages.profile.giftReceived")}
       </Typography>
     </>
   );

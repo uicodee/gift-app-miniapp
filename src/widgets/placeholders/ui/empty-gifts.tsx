@@ -37,7 +37,7 @@ export const EmptyGifts = ({
           className="size-25"
         />
       ) : (
-        ""
+        <div className="size-25"></div>
       )}
       <Typography variant="text">{title}</Typography>
       {link && linkText && (

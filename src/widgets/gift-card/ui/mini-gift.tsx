@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface MiniGiftCardProps {
   title: string;
@@ -11,6 +12,7 @@ export const MiniGiftCard = ({
   giftImageUrl,
   onClick,
 }: MiniGiftCardProps) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col justify-between items-center bg-section rounded-xl px-3 py-2 text-center">
       <span className="text-xs text-label-secondary leading-4.5 font-light">
@@ -28,7 +30,7 @@ export const MiniGiftCard = ({
         className="rounded-full bg-accent-blue text-white font-semibold text-pre-xs leading-4.5 py-1.5 px-6.25 mb-1"
         onClick={onClick}
       >
-        Send
+        {t("common.send")}
       </button>
     </div>
   );

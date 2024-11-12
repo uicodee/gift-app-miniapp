@@ -2,12 +2,13 @@ import { Section } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/shared/api/generated/users/users";
 import { initDataUser } from "@telegram-apps/sdk-react";
-import { Link } from "react-router-dom";
 import { AnimatedWrapper } from "@/widgets/animation";
 import { LeaderCard } from "@/widgets/leader";
+import { useTranslation } from "react-i18next";
 // import Search from "@/assets/search.svg?react";
 
 export const LeaderboardOverview = () => {
+  const { t } = useTranslation();
   const { data: users } = useQuery({
     queryKey: ["users"],
     queryFn: () => getUsers().usersControllerFindAll({ orderBy: "giftCount" }),
@@ -19,7 +20,7 @@ export const LeaderboardOverview = () => {
           {/* <Search className="size-5 absolute" /> */}
           <input
             type="text"
-            placeholder="Search"
+            placeholder={t("common.search")}
             className="bg-input w-full py-2 placeholder:text-placeholder placeholder:text-center  placeholder:text-base-plus placeholder:leading-5.5 rounded-pre-xl outline-none px-4 "
           />
         </Section>
@@ -27,18 +28,17 @@ export const LeaderboardOverview = () => {
       <div className="bg-bg-primary">
         <div className="flex flex-col">
           {users?.map((user, index) => (
-            // @ts-ignore
-            <Link to={`/profile/${user._id}`}>
-              <LeaderCard
-                key={index}
-                avatar={user.profilePhoto}
-                fullName={user.fullName}
-                gifts={user.gifts?.length as number}
-                place={index + 1}
-                me={initDataUser()?.id === user.telegramId}
-                isLast={users.length === index + 1}
-              />
-            </Link>
+            <LeaderCard
+              // @ts-ignore
+              id={user._id}
+              key={index}
+              avatar={user.profilePhoto}
+              fullName={user.fullName}
+              gifts={user.gifts?.length as number}
+              place={index + 1}
+              me={initDataUser()?.id === user.telegramId}
+              isLast={users.length === index + 1}
+            />
           ))}
         </div>
       </div>
